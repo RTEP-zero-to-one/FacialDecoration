@@ -6,6 +6,8 @@
 
 <img src="assets/logo.jpg" alt="logo" width="200" div al ign=center />
 
+</div>
+
   <h1 align="center">Facial Decoration</h1>
 
   <p align="center">
