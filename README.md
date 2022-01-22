@@ -5,7 +5,7 @@
 
   <img src="docs/images/logo.svg" alt="Facial Decoration Tracing" width="250">
 
-  <h1 align="center">Facial Decoration Tracing</h1>
+  <h1 align="center">Facial Decoration</h1>
 
   <p align="center">
     to-do: Description of Facial Decoration Tracing(short)
