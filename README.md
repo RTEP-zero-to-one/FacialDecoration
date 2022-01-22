@@ -25,9 +25,10 @@
 
 </p>
 
-![Contributors](https://img.shields.io/github/contributors/RTEP-zero-to-one/FacialDecorationTracing?style=for-the-badge&logo=appveyor)
-![Issues](https://img.shields.io/github/issues-raw/RTEP-zero-to-one/FacialDecorationTracing?style=for-the-badge&logo=appveyor)
-![Apache-2.0 License](https://img.shields.io/badge/LICENSE-Apache--2.0-yellowgreen?style=for-the-badge&logo=appveyor)
+![Contributors](https://img.shields.io/github/contributors/RTEP-zero-to-one/FacialDecorationTracing?style=for-the-badge)
+![GitHub Repo stars](https://img.shields.io/github/stars/RTEP-zero-to-one/FacialDecorationTracing?style=for-the-badge)
+![Issues](https://img.shields.io/github/issues-raw/RTEP-zero-to-one/FacialDecorationTracing?style=for-the-badge)
+![Apache-2.0 License](https://img.shields.io/badge/LICENSE-Apache--2.0-yellowgreen?style=for-the-badge)
 
 <!-- TABLE OF CONTENTS -->
 
