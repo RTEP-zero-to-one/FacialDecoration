@@ -27,8 +27,8 @@
 
 ![Contributors]()
 ![Forks]()
-![Issues]()
-![Apache-2.0 License]()
+![Issues](https://img.shields.io/github/issues-raw/RTEP-zero-to-one/FacialDecorationTracing?style=for-the-badge&logo=appveyor)
+![Apache-2.0 License](https://img.shields.io/badge/LICENSE-Apache--2.0-yellowgreen?style=for-the-badge&logo=appveyor)
 
 <!-- TABLE OF CONTENTS -->
 
