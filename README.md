@@ -8,7 +8,7 @@
   <h1 align="center">Facial Decoration</h1>
 
   <p align="center">
-    to-do: Description of Facial Decoration Tracing(short)
+    Help you to discover a brand new self!
     <br />
     <a href="#"><strong>Explore the docs »</strong></a>
     <br />
@@ -21,6 +21,7 @@
   </p>
 
 
+
 </p>
 
 ![Contributors]()
@@ -29,6 +30,7 @@
 ![Apache-2.0 License]()
 
 <!-- TABLE OF CONTENTS -->
+
 <details open="open">
   <summary>Table of Contents</summary>
   <ol>
