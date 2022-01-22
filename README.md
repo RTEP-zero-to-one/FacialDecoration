@@ -26,7 +26,7 @@
 ![Forks]()
 ![Stargazers]()
 ![Issues]()
-![GNU GPL-3.0 License]()
+![Apache-2.0 License]()
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
