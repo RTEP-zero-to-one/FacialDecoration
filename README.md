@@ -3,7 +3,7 @@
 
 <p align="center">
 
-  <img src="docs/images/logo.svg" alt="Facial Decoration Tracing" width="250">
+  <img src="/Users/xxxuan/Desktop/logo.jpg" alt="logo" style="zoom:30%;" />
 
   <h1 align="center">Facial Decoration</h1>
 
