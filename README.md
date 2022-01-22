@@ -32,7 +32,7 @@
 <!-- TABLE OF CONTENTS -->
 
 <details open="open">
-  <summary>Table of Contents</summary>
+  <summary>Catalogue</summary>
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
@@ -59,6 +59,7 @@
 
 
 
+
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
@@ -69,12 +70,10 @@ To-do: Description
 * OpenCV C++ API
 * QT C++ API
 * C++ Timer
-*
-*
 ### Built With
 
 * GitHub Pages
-* Doxygen
+* ~~Doxygen~~(Not Confirmed)
 * Typora
 
 
