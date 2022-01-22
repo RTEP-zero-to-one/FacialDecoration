@@ -13,12 +13,13 @@
     <a href="#"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="#">View Demo</a>
+    <a href="#">View Demo</a> 
     ·
     <a href="#">Report Bug</a>
     ·
     <a href="#">Request Feature</a>
   </p>
+
 
 
 
@@ -117,7 +118,7 @@ This project is being completed by a team of Msc Computer System Engineering stu
 
 * [Tianze Zhang](https://github.com/ZTZWILL) 
 * [Xunan Wang]()
-* [Luoxuan Peng]()
+* [Luoxuan Peng](https://github.com/Xxxuan11)
 * [Heting Ying](https://github.com/XeonHis)
 
 
