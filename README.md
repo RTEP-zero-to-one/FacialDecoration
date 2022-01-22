@@ -4,7 +4,7 @@
 <div align="center">
 
 
-​                                              <img src="assets/logo.jpg" alt="logo" width="200" div al ign=center />
+<img src="assets/logo.jpg" alt="logo" width="200" div al ign=center />
 
   <h1 align="center">Facial Decoration</h1>
 
