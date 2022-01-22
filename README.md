@@ -109,7 +109,7 @@ Distributed under the Apache License 2.0. See [`LICENSE`](https://github.com/RTE
 
 This project is being completed by a team of Msc Computer System Engineering students at the University of Glasgow:
 
-* [Tianze Zhang]() 
+* [Tianze Zhang](https://github.com/ZTZWILL) 
 * [Xunan Wang]()
 * [Luoxuan Peng]()
 * [Heting Ying](https://github.com/XeonHis)
