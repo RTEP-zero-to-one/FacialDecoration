@@ -64,12 +64,16 @@ To-do: Description
 
 ### Components Used
 
-*
+* OpenCV C++ API
+* QT C++ API
+* C++ Timer
 *
 *
 ### Built With
 
-* To-do
+* GitHub Pages
+* Doxygen
+* Typora
 
 
 <!-- GETTING STARTED -->
