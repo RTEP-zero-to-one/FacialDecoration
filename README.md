@@ -68,7 +68,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-To-do: Description
+The facial decoration is a real-time face detection and instant beautification application based on Raspberry Pi.
+In order to perform simple beauty functions, it can automatically and accurately identify the user's facial features. Then they can use whitening and dermabrasion functions to get flawless skin and put cute stickers on their face. Besides, this application has a series of filters, which could be selected when taking selfies or live streaming.
 
 ### Components Used
 
