@@ -13,7 +13,7 @@
   <p align="center">
     Help you to discover a brand new self!
     <br />
-    <a href="#"><strong>Explore the docs »</strong></a>
+      <a href="https://rtep-zero-to-one.github.io/rtep/"><strong>Full the docs »</strong></a>
     <br />
     <br />
     <a href="#">View Demo</a> 
@@ -22,6 +22,7 @@
     ·
     <a href="#">Request Feature</a>
   </p>
+
 
 
 
