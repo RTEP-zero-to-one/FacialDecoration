@@ -79,7 +79,7 @@ In order to perform simple beauty functions, it can automatically and accurately
 ### Built With
 
 * GitHub Pages
-* ~~Doxygen~~(Not Confirmed)
+* Jekyll with "just-the-docs" (to build documentation)
 * Typora
 
 
