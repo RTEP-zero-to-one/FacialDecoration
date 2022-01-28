@@ -1,2 +1,9 @@
 # DS_Store
 .DS_Store
+
+# .vs compile files
+*/.vs
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
