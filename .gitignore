@@ -7,3 +7,9 @@
 *.vcxproj.filters
 *.vcxproj.user
 *.sln
+
+# idea compile file
+.idea/
+
+# cmake debug file
+cmake-build-debug/
