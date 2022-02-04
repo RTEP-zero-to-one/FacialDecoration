@@ -20,3 +20,13 @@ cmake-build-debug-gcc/
 *.tlog
 
 *.obj
+
+*.ilk
+
+*.log
+
+*.idb
+
+*.pdb
+
+*.exe
