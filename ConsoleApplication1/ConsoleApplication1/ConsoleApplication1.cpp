@@ -18,7 +18,7 @@ int main()
 		printf("级联分类器错误，可能未找到文件，拷贝该文件到工程目录下！\n");
 	}
 	VideoCapture capture;
-	capture.open(0);
+	capture.open("http://uk.xeonhis.top:65180/?action=stream");
 	if (false == capture.isOpened())
 	{
 		cout << "摄像头没有打开！！！" << endl;
@@ -27,10 +27,8 @@ int main()
 	
 	while (true) {
 		capture >> frame;
-		cvtColor(frame, imageGray, COLOR_BGR2GRAY);//转为灰度图
-		equalizeHist(imageGray, imageGray);//直方图均衡化，增加对比度方便处理
 		Rect faceRect;
-		faceDetect(imageGray, cascade, faceRect);
+		faceDetect(frame, cascade, faceRect);
 		rectangle(frame, faceRect, Scalar(0, 255, 0), 2);
 		imshow("原图像", frame);
 		waitKey(1);
