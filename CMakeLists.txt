@@ -9,7 +9,7 @@ add_executable(FacialDecorationTracing
         test_demos/video_stream_demo.cpp
         test_demos/video_stream_demo.h)
 add_executable(ConsoleApplication1
-        ConsoleApplication1/ConsoleApplication1/ConsoleApplication1.cpp
+        ConsoleApplication1/ConsoleApplication1/main.cpp
         ConsoleApplication1/ConsoleApplication1/face_detect.h
         ConsoleApplication1/ConsoleApplication1/face_detect.cpp
         ConsoleApplication1/ConsoleApplication1/global_variable.h)

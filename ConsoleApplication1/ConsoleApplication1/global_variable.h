@@ -1,6 +1,6 @@
 #pragma once
 #include <opencv2/opencv.hpp>
-#include<opencv2\ml.hpp>
+#include<opencv2/ml.hpp>
 using namespace cv;
 extern CascadeClassifier cascade_face;
 extern CascadeClassifier cascade_nose;
