@@ -11,7 +11,7 @@ using namespace std;
 int main(int argc, char **argv) {
     // open stream
     VideoCapture capture;
-    capture.open("http://uk.xeonhis.top:65180/?action=stream");
+    capture.open(0);
     if (!capture.isOpened()) {
         printf("could not read file...\n");
         return -1;

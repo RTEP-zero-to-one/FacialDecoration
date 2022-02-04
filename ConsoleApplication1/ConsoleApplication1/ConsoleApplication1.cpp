@@ -18,8 +18,8 @@ int main()
 		printf("级联分类器错误，可能未找到文件，拷贝该文件到工程目录下！\n");
 	}
 	VideoCapture capture;
-	capture.open("http://uk.xeonhis.top:65180/?action=stream");
-	if (false == capture.isOpened())
+	capture.open(0);
+	if (!capture.isOpened())
 	{
 		cout << "摄像头没有打开！！！" << endl;
 		return -1;

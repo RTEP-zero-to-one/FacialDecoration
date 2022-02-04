@@ -13,3 +13,4 @@
 
 # cmake debug file
 cmake-build-debug/
+cmake-build-debug-gcc/
