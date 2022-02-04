@@ -1,0 +1,14 @@
+//
+// Created by paul on 2022/2/2.
+//
+
+#ifndef FACIALDECORATIONTRACING_VIDEO_STREAM_DEMO_H
+#define FACIALDECORATIONTRACING_VIDEO_STREAM_DEMO_H
+
+
+class video_stream_demo {
+
+};
+
+
+#endif //FACIALDECORATIONTRACING_VIDEO_STREAM_DEMO_H
