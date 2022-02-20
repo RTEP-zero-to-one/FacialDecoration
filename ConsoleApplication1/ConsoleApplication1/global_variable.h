@@ -16,7 +16,7 @@ extern Rect eyeRect;
 extern Rect mouthRect;
 #define FACE_XML "face_detect.xml"
 #define NOSE_XML "nose_detect.xml"
-#define EYE_XML "haarcascade_mcs_eyepair_big.xml"
+#define EYE_XML "haarcascade_eye_tree_eyeglasses.xml"
 #define MOUTH_XML "mouth_detect.xml"
-#define MINISCALE 1
+#define MINISCALE 5
 #define OLDFASHION 1
