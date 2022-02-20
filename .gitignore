@@ -13,10 +13,9 @@
 
 # cmake debug file
 cmake-build-debug/
-<<<<<<< Updated upstream
+
 cmake-build-debug-gcc/
-=======
->>>>>>> Stashed changes
+
 *.tlog
 
 *.obj
