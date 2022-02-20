@@ -1,18 +1,14 @@
 #include "../ConsoleApplication1/ConsoleApplication1/global_variable.h"
 #include "../ConsoleApplication1/ConsoleApplication1/img_process.h"
 #include "gtest/gtest.h"
-//#include "opencv2/highgui.hpp"
-
-int add(int a, int b) {
-    return a + b;
-}
+#include "iostream"
 
 
-TEST(test1, c1) {
-//    Mat src,result;
-//    src = imread("../assets/img.png");
-//    result = filter(src,OLDFASHION);
-    EXPECT_EQ(3, add(1, 2));
+TEST(OpenCVTest, imgprocess_OLDFASHION) {
+    Mat src, result;
+    src = imread("assets/cat.jpg", IMREAD_ANYCOLOR);
+    result = filter(src, OLDFASHION);
+    imwrite("assets/cat_after.jpg", result);
 }
 
 GTEST_API_ int main(int argc, char **argv) {

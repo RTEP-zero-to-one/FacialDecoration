@@ -19,4 +19,4 @@ extern Rect mouthRect;
 #define EYE_XML "haarcascade_mcs_eyepair_big.xml"
 #define MOUTH_XML "mouth_detect.xml"
 #define MINISCALE 1
-#define OLDFASHION 1//»³¾É·ç¸ñ
+#define OLDFASHION 1
