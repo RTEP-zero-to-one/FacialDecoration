@@ -1,11 +1,11 @@
 # include "face_detect.h"
-bool faceDetect(const Mat& src, CascadeClassifier& cascade,  Rect& faceRect)
+bool Detect::faceDetect(const Mat& src, CascadeClassifier& cascade)
 {
 	Mat imgGray;
 	Mat srcTemp = src.clone();
 	cvtColor(srcTemp, imgGray, COLOR_BGR2GRAY);
 	equalizeHist(imgGray, imgGray);
-	Mat imgSmall(cvRound(src.rows /MINISCALE), cvRound(src.cols / MINISCALE), CV_8UC1);
+	Mat imgSmall(cvRound(src.rows / miniScaleFace), cvRound(src.cols / miniScaleFace), CV_8UC1);
 	resize(imgGray, imgSmall, imgSmall.size(), 0, 0, INTER_LINEAR);
 	vector<Rect>faces;
 	Rect maxFace;
@@ -29,15 +29,15 @@ bool faceDetect(const Mat& src, CascadeClassifier& cascade,  Rect& faceRect)
 	}
 	maxFace = faces[maxIndex];
 	Point p = maxFace.tl();
-	int w = MINISCALE * maxFace.width;
-	int h = MINISCALE * maxFace.height;
-	int x = MINISCALE * (p.x);
-	int y = MINISCALE * (p.y);
+	int w = miniScaleFace * maxFace.width;
+	int h = miniScaleFace * maxFace.height;
+	int x = miniScaleFace * (p.x);
+	int y = miniScaleFace * (p.y);
 	Rect faceLocation(x, y, w, h);
 	faceRect = faceLocation;
 	return 1;
 }
-bool mouthDetect(const Mat& src, CascadeClassifier& cascade, Rect& mouthRect)
+bool Detect::mouthDetect(const Mat& src, CascadeClassifier& cascade)
 {
 	Mat imgGray;
 	Mat srcTemp = src.clone();
@@ -75,57 +75,50 @@ bool mouthDetect(const Mat& src, CascadeClassifier& cascade, Rect& mouthRect)
 	mouthRect = mouthLocation;
 	return 1;
 }
-bool eyeDetect(const Mat& src, CascadeClassifier& cascade, vector<Rect> & eyeRect)
+bool Detect::eyeDetect(const Mat & src, CascadeClassifier & cascade)
 {
 	Mat imgGray;
 	Mat srcTemp = src.clone();
 	cvtColor(srcTemp, imgGray, COLOR_BGR2GRAY);
 	equalizeHist(imgGray, imgGray);
-	Mat imgSmall(cvRound(src.rows / MINISCALE), cvRound(src.cols / MINISCALE), CV_8UC1);
+	Mat imgSmall(cvRound(src.rows / miniScaleEye), cvRound(src.cols / miniScaleEye), CV_8UC1);
 	resize(imgGray, imgSmall, imgSmall.size(), 0, 0, INTER_LINEAR);
 	vector<Rect> eyes;
 	cascade.detectMultiScale(imgSmall, eyes, 1.1, 2, 0, Size(30, 30));
-	cout << eyes.size() << endl;
-	if (eyes.size() < 2)
-	{
-		cout << "zhaobudao" << endl;
+	if (eyes.size() < 2) {
 		return false;
-	}
-	
-	
+	}	
 	Rect eye1 = eyes[0];
 	Rect eye2 = eyes[1];
 	Point p1 = eye1.tl();
-	int w1 = MINISCALE * eye1.width;
-	int h1 = MINISCALE * eye1.height;
-	int x1 = MINISCALE * (p1.x);
-	int y1 = MINISCALE * (p1.y);
+	int w1 = miniScaleEye * eye1.width;
+	int h1 = miniScaleEye* eye1.height;
+	int x1 = miniScaleEye * (p1.x);
+	int y1 = miniScaleEye * (p1.y);
 	Rect eyeLocation1(x1, y1, w1, h1);
 	Point p2 = eye2.tl();
-	int w2 = MINISCALE * eye2.width;
-	int h2 = MINISCALE * eye2.height;
-	int x2 = MINISCALE * (p2.x);
-	int y2 = MINISCALE * (p2.y);
+	int w2 = miniScaleEye * eye2.width;
+	int h2 = miniScaleEye * eye2.height;
+	int x2 = miniScaleEye * (p2.x);
+	int y2 = miniScaleEye * (p2.y);
 	Rect eyeLocation2(x2, y2, w2, h2);
 	if (x1 < x2) {
-		eyeRect.push_back(eyeLocation1);
-		eyeRect.push_back(eyeLocation2);
+		leftEyeRect=eyeLocation1;
+		rightEyeRect=eyeLocation2;
 	}
 	else {
-		eyeRect.push_back(eyeLocation2);
-		eyeRect.push_back(eyeLocation1);
+		rightEyeRect=eyeLocation2;
+		leftEyeRect=eyeLocation1;
 	}
-	rectangle(src, eyeLocation1, Scalar(0, 255, 0), 2);
-	rectangle(src, eyeLocation2, Scalar(0, 255, 0), 2);
 	return 1;
 }
-bool getAngle(const Mat& src, vector<Rect>& eyeRect) {
-	if (!eyeRect.size()) {
+bool Detect::getAngle(const Mat& src) {
+	if ((leftEyeRect.area()==0)||(rightEyeRect.area()==0)) {
 		return 0;
 	}
 	Mat img = src.clone();
-	Mat eyeLeft = img(eyeRect[0]);
-	Mat eyeRight = img(eyeRect[1]);
+	Mat eyeLeft = img(leftEyeRect);
+	Mat eyeRight = img(rightEyeRect);
 	Mat left;
 	Mat right;
 	int leftX = 0, leftY = 0,leftEyeX=0,leftEyeY=0;
@@ -135,8 +128,7 @@ bool getAngle(const Mat& src, vector<Rect>& eyeRect) {
 	threshold(left, left, 30, 255, THRESH_BINARY);
 	cvtColor(eyeRight, right, COLOR_BGR2GRAY);
 	threshold(right, right, 30, 255, THRESH_BINARY);
-	imshow("left",left);
-	imshow("right",right);
+	
 
 	
 	for (int i = 0; i < left.cols; i++)
@@ -163,11 +155,13 @@ bool getAngle(const Mat& src, vector<Rect>& eyeRect) {
 		rightEyeX = rightX / countRight;
 		rightEyeY= rightY / countRight;
 	}
-	Point leftEyePos(eyeRect[0].tl().x + leftEyeX, eyeRect[0].tl().y + leftEyeY);
-	Point rightEyePos(eyeRect[1].tl().x + rightEyeX, eyeRect[1].tl().y + rightEyeY);
+	leftEyeCenter.x = leftEyeRect.tl().x + leftEyeX;
+	leftEyeCenter.y=leftEyeRect.tl().y + leftEyeY;
+	rightEyeCenter.x = rightEyeRect.tl().x + rightEyeX;
+	rightEyeCenter.y=rightEyeRect.tl().y + rightEyeY;
 	return true;
 }
-bool noseDetect(const Mat& src, CascadeClassifier& cascade, Rect& noseRect)
+bool Detect::noseDetect(const Mat& src, CascadeClassifier& cascade)
 {
 	Mat imgGray;
 	Mat srcTemp = src.clone();
@@ -204,4 +198,19 @@ bool noseDetect(const Mat& src, CascadeClassifier& cascade, Rect& noseRect)
 	Rect noseLocation(x, y, w, h);
 	noseRect = noseLocation;
 	return 1;
+}
+void displayDetection(const Mat& src, const Detect& detection) {
+	Mat frame = src.clone();
+	if (detection.leftEyeRect.area()) {
+		rectangle(frame, detection.leftEyeRect, Scalar(0, 255, 0), 2);
+	}
+	if (detection.rightEyeRect.area()) {
+		rectangle(frame, detection.rightEyeRect, Scalar(0, 255, 0), 2);
+	}
+	if (faceRect.area()) {
+		rectangle(frame, faceRect, Scalar(0, 0, 255), 2);
+	}
+	circle(frame, detection.leftEyeCenter, 3, Scalar(0, 0, 255), 3, 8);
+	circle(frame, detection.rightEyeCenter, 3, Scalar(0, 0, 255), 3, 8);
+	imshow("Detection Result", frame);
 }
