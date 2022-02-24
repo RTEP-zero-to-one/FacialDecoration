@@ -20,3 +20,5 @@ extern Rect mouthRect;
 #define MOUTH_XML "mouth_detect.xml"
 #define MINISCALE 1
 #define OLDFASHION 1
+#define ComicBook 2
+
