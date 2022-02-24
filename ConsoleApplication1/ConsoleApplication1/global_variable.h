@@ -22,3 +22,4 @@ extern Rect mouthRect;
 #define OLDFASHION 1
 #define ComicBook 2
 #define FANTASY 3
+#define FREEZE 4
