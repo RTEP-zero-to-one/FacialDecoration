@@ -23,3 +23,4 @@ extern Rect mouthRect;
 #define ComicBook 2
 #define FANTASY 3
 #define FREEZE 4
+#define DARKTONE 6
