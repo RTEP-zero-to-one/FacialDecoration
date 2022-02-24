@@ -17,6 +17,7 @@ add_executable(FacialDecoration
 
 # opencv configuration
 #set(OpenCV_DIR C:\\opencv\\mbuild\\install\\x64\\mingw\\lib)  # opencv lib in Windows
+#set(OpenCV_DIR C:\\opencv\\opencv\\build\\x64\\vc14\\lib)  # opencv lib in Windows
 set(OpenCV_DIR /opt/homebrew/Cellar/opencv/4.5.4_3/lib)  # opencv lib in Ubuntu
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
