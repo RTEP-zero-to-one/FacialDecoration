@@ -20,6 +20,13 @@ Mat filter(Mat& src, int style_num) {
             new_channels[1] = abs(original_channels[0] - original_channels[1] + original_channels[0] + original_channels[2]) * original_channels[2] / 256;
             new_channels[2] = abs(original_channels[1] - original_channels[0] + original_channels[1] + original_channels[2]) * original_channels[2] / 256;
             merge(new_channels, result);
+        case FANTASY:
+            new_channels[0] = abs(original_channels[1] + original_channels[2] + 1) * original_channels[0] * 128;
+            new_channels[1] = abs(original_channels[2] + original_channels[0] + 1) * original_channels[1] * 128;
+            new_channels[2] = abs(original_channels[0] + original_channels[1] + 1) * original_channels[2] * 128;
+            merge(new_channels, result);
+
+
             break;
 	}
     return result;
