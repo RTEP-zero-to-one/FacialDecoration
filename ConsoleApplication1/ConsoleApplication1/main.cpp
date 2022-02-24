@@ -24,12 +24,13 @@ int main()
 	}
 	while (true) {
 		capture >> frame;
+		Detect detection;
 		//faceDetect(frame, cascade_face, faceRect);
 		//mouthDetect(frame, cascade_mouth, mouthRect);
-		eyeDetect(frame, cascade_eye, eyeRect);
-		//noseDetect(frame, cascade_nose, noseRect);
-		rectangle(frame, eyeRect, Scalar(0, 255, 0), 2);
-		imshow("原图像", frame);
+		detection.eyeDetect(frame, cascade_eye);
+		detection.getAngle(frame);
+		displayDetection(frame, detection);
+		
 		waitKey(1);
 	}
 	capture.release();
