@@ -15,7 +15,7 @@ Mat filter(Mat& src, int style_num) {
             new_channels[1] = 0.349 * original_channels[2] + 0.686 * original_channels[1] + 0.168 * original_channels[0];
             new_channels[2] = 0.393 * original_channels[2] + 0.769 * original_channels[1] + 0.189 * original_channels[0];
             merge(new_channels, result);
-        case ComicBook:
+        case COMICBOOK:
             new_channels[0] = abs(original_channels[0] - original_channels[1] + original_channels[0] + original_channels[2]) * original_channels[1] / 256;
             new_channels[1] = abs(original_channels[0] - original_channels[1] + original_channels[0] + original_channels[2]) * original_channels[2] / 256;
             new_channels[2] = abs(original_channels[1] - original_channels[0] + original_channels[1] + original_channels[2]) * original_channels[2] / 256;
