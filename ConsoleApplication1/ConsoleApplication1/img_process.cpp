@@ -55,11 +55,29 @@ Mat filter(Mat &src, int style_num) {
             result = gray;
             break;
         }
-        case FANTASY:
-            new_channels[0] = original_channels[0] * 128 / (original_channels[1] + original_channels[2] + 1);
-            new_channels[1] = original_channels[1] * 128 / (original_channels[2] + original_channels[0] + 1);
-            new_channels[2] = original_channels[2] * 128 / (original_channels[0] + original_channels[1] + 1);
-            merge(new_channels, result);
+        case FANTASY: {
+            for (int y = 0; y < height; y++) {
+                auto *P0= src.ptr<uchar>(y);
+                auto *P1= result.ptr<uchar>(y);
+                for (int x = 0; x < width; x++) {
+                    float b0 = P0[3 * x];
+                    float g0 = P0[3 * x + 1];
+                    float r0 = P0[3 * x + 2];
+
+                    float b = b0 * 255 / (g0 + r0 + 1);
+                    float g = g0 * 255 / (b0 + r0 + 1);
+                    float r = r0 * 255 / (g0 + b0 + 1);
+
+                    r = (r > 255 ? 255 : (r < 0 ? 0 : r));
+                    g = (g > 255 ? 255 : (g < 0 ? 0 : g));
+                    b = (b > 255 ? 255 : (b < 0 ? 0 : b));
+
+                    P1[3 * x] = (uchar) b;
+                    P1[3 * x + 1] = (uchar) g;
+                    P1[3 * x + 2] = (uchar) r;
+                }
+            }
+        }
             break;
         case FREEZE:
             new_channels[0] = abs(original_channels[0] - original_channels[2] - original_channels[1]) * 3 / 2;
