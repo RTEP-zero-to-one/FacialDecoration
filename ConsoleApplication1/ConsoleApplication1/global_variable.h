@@ -14,6 +14,7 @@ extern Rect faceRect;
 extern Rect noseRect;
 extern Rect eyeRect;
 extern Rect mouthRect;
+extern Mat hat;
 #define FACE_XML "face_detect.xml"
 #define NOSE_XML "nose_detect.xml"
 #define EYE_XML "haarcascade_eye_tree_eyeglasses.xml"
