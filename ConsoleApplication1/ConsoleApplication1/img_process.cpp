@@ -29,10 +29,12 @@ Mat filter(Mat& src, int style_num) {
             new_channels[0] = abs(original_channels[0] - original_channels[2] - original_channels[1]) * 3 / 2;
             new_channels[1] = abs(original_channels[1] - original_channels[2] - original_channels[0]) * 3 / 2;
             new_channels[2] = abs(original_channels[2] - original_channels[1] - original_channels[0]) * 3 / 2;
+            merge(new_channels, result);
         case DARKTONE:
             new_channels[0] = original_channels[0] * original_channels[0] / 255;
             new_channels[1] = original_channels[1] * original_channels[1] / 255;
             new_channels[2] = original_channels[2] * original_channels[2] / 255;
+            merge(new_channels, result);
         case SUMMER:
             int increaseLookupTable = LookupTable([0, 64, 128, 256], [0, 80, 160, 256])
             int decreaseLookupTable = LookupTable([0, 64, 128, 256], [0, 50, 100, 256])
