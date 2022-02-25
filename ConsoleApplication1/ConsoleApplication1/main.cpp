@@ -22,15 +22,16 @@ int main()
 		cout << "摄像头没有打开！！！" << endl;
 		return -1;
 	}
+	Mat hat = imread("hat.jpeg");
 	while (true) {
 		capture >> frame;
 		Detect detection;
-		//faceDetect(frame, cascade_face, faceRect);
-		//mouthDetect(frame, cascade_mouth, mouthRect);
+		detection.faceDetect(frame, cascade_face);
 		detection.eyeDetect(frame, cascade_eye);
 		detection.getAngle(frame);
 		displayDetection(frame, detection);
-		
+		Mat test=detection.decorate(frame, hat);
+		imshow("ceshi", test);
 		waitKey(1);
 	}
 	capture.release();
