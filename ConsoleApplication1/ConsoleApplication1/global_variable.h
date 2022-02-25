@@ -24,3 +24,4 @@ extern Rect mouthRect;
 #define FANTASY 3
 #define FREEZE 4
 #define DARKTONE 6
+#define SUMMER 7
