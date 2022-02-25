@@ -6,9 +6,9 @@
 
 TEST(OpenCVTest, imgprocess_OLDFASHION) {
     Mat src, result;
-    src = imread("assets/cat.jpg", IMREAD_ANYCOLOR);
-    result = filter(src, OLDFASHION);
-    imwrite("assets/cat_after.jpg", result);
+    src = imread("assets/img.png", IMREAD_ANYCOLOR);
+    result = filter(src, FANTASY);
+    imwrite("assets/img_after.png", result);
 }
 
 GTEST_API_ int main(int argc, char **argv) {
