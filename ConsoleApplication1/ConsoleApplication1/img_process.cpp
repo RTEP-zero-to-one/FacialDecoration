@@ -5,7 +5,7 @@
 
 using namespace cv;
 using namespace std;
-
+/*
 Mat filter(Mat &src, int style_num) {
     if (!style_num)
         return src;
@@ -90,7 +90,16 @@ Mat filter(Mat &src, int style_num) {
             new_channels[1] = original_channels[1] * original_channels[1] / 255;
             new_channels[2] = original_channels[2] * original_channels[2] / 255;
             merge(new_channels, result);
+<<<<<<< Updated upstream
+=======
+        case SUMMER:
+            int increaseLookupTable = LookupTable([0, 64, 128, 256], [0, 80, 160, 256]);
+            int decreaseLookupTable = LookupTable([0, 64, 128, 256], [0, 50, 100, 256]);
+            new_channels[2] = cv2.LUT(original_channels[2], increaseLookupTable).astype(np.uint8);
+            new_channels[0] = cv2.LUT(original_channels[0], decreaseLookupTable).astype(np.uint8);
+            merge(new_channels, result);
+>>>>>>> Stashed changes
             break;
     }
     return result;
-}
+}*/
