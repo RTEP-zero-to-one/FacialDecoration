@@ -128,9 +128,7 @@ bool Detect::getAngle(const Mat& src) {
 	threshold(left, left, 30, 255, THRESH_BINARY);
 	cvtColor(eyeRight, right, COLOR_BGR2GRAY);
 	threshold(right, right, 30, 255, THRESH_BINARY);
-	
 
-	
 	for (int i = 0; i < left.cols; i++)
 		for (int j = 0; j < left.rows; j++) {
 			if (left.at<uchar>(i, j)!=0) {
@@ -159,8 +157,87 @@ bool Detect::getAngle(const Mat& src) {
 	leftEyeCenter.y=leftEyeRect.tl().y + leftEyeY;
 	rightEyeCenter.x = rightEyeRect.tl().x + rightEyeX;
 	rightEyeCenter.y=rightEyeRect.tl().y + rightEyeY;
+	diffY = rightEyeCenter.y - leftEyeCenter.y;            //右眼比左眼高的值
+	diffX= rightEyeCenter.x - leftEyeCenter.x;
+	
 	return true;
+	
 }
+Mat Detect::decorate(const Mat& src, const Mat& res) {
+	if (faceRect.area() == 0) {
+		return src;
+	}
+	Mat img = src.clone();
+	int length = res.cols;
+	int faceWidth = faceRect.width;//脸宽
+	int faceHeight = faceRect.height;//脸高
+	Point faceCorner = faceRect.tl();
+	float resizeRate = faceWidth*1.5 / length;
+	Mat resNew = transform(res);
+	resize(resNew, resNew, Size(cvRound(resNew.cols*resizeRate), cvRound(resNew.rows * resizeRate)));
+	int lengthofRes=resNew.cols;//新帽子长度
+	int widthofRes = resNew.rows;//新帽子高度	
+	int roi_x, roi_y;
+	roi_x = cvRound(faceCorner.x - (resNew.cols - faceWidth) / 2) ;         //增加透视变换水平误差
+	roi_y = cvRound(faceCorner.y - resNew.rows * 1);		   //感兴趣区域的y0                          --上下平移控制
+	int diff_x = img.cols - (roi_x + lengthofRes);//右边超出边界大小
+	int diff_y = img.rows - (roi_y + widthofRes);//下边超出边界大小
+	int diff_roi_x = roi_x;//左顶点位置
+	int diff_roi_y = roi_y;//
+	Rect resROI;
+	if (diff_roi_x >= 0 && diff_roi_y >= 0 && diff_x>=0&& diff_y>=0) {
+		resROI=Rect(diff_roi_x, diff_roi_y, lengthofRes, widthofRes);
+	}
+	else {
+		if (diff_roi_x >= 0) {
+			diff_roi_x = 0;
+		}
+		if (diff_roi_y >= 0) {
+			diff_roi_y = 0;
+		}
+		if (diff_x >= 0) {
+			diff_x = 0;
+		}
+		if (diff_y >= 0) {
+			diff_y = 0;
+		}
+		resNew(cv::Rect(-diff_roi_x, -diff_roi_y, lengthofRes + diff_x + diff_roi_x, widthofRes + diff_roi_y + diff_y)).copyTo(resNew);
+		resROI=Rect(roi_x - diff_roi_x, roi_y - diff_roi_y, lengthofRes, widthofRes);
+	}
+	Mat resGray;
+	Mat resMask;
+	Mat resMaskBlack;
+	Mat resFinal;
+	cv::cvtColor(resNew, resGray, COLOR_BGR2GRAY);
+//remove background
+	cv::threshold(resGray, resMaskBlack, 10, 255, THRESH_BINARY);
+	cv::bitwise_not(resMaskBlack, resMaskBlack);
+	cv::bitwise_or(resMaskBlack, resGray,resFinal);
+//remove white
+	cv::threshold(resFinal, resMask, 220, 255, THRESH_BINARY);
+	cv::bitwise_not(resMask, resMask);
+	Mat imageROI = img(resROI);
+	Mat element = getStructuringElement(MORPH_RECT, Size(3, 3));
+	Mat resMaskk;
+	erode(resMask, resMaskk, element);
+	resNew.copyTo(imageROI, resMaskk);
+	return img;
+}
+Mat Detect::transform(const Mat& res) {
+	if (diffX == 0 || diffY == 0) {
+		return res;
+	}
+	float eyeTan =(diffY*1.0)/(diffX*1.0);
+	cout << eyeTan << endl;
+	float eyeAngle = atan(eyeTan) * 180.0/ 3.14159*(-1);
+	Point2f center(res.cols / 2, res.rows / 2);//中心
+	Mat M = getRotationMatrix2D(center, eyeAngle, 1);//计算旋转的仿射变换矩阵 
+	Mat resNew;
+	warpAffine(res, resNew, M, Size(res.cols, res.rows));//仿射变换
+	return resNew;
+	
+}
+
 bool Detect::noseDetect(const Mat& src, CascadeClassifier& cascade)
 {
 	Mat imgGray;
@@ -207,8 +284,8 @@ void displayDetection(const Mat& src, const Detect& detection) {
 	if (detection.rightEyeRect.area()) {
 		rectangle(frame, detection.rightEyeRect, Scalar(0, 255, 0), 2);
 	}
-	if (faceRect.area()) {
-		rectangle(frame, faceRect, Scalar(0, 0, 255), 2);
+	if (detection.faceRect.area()) {
+		rectangle(frame, detection.faceRect, Scalar(0, 0, 255), 2);
 	}
 	circle(frame, detection.leftEyeCenter, 3, Scalar(0, 0, 255), 3, 8);
 	circle(frame, detection.rightEyeCenter, 3, Scalar(0, 0, 255), 3, 8);
