@@ -2,6 +2,14 @@ cmake_minimum_required(VERSION 3.21)
 project(FacialDecorationTracing)
 
 set(CMAKE_CXX_STANDARD 14)
+find_package(Qt5 REQUIRED COMPONENTS Core Gui Widgets)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+
+
+
+
 
 # execute configuration
 add_executable(UnitTest
@@ -18,7 +26,10 @@ add_executable(FacialDecoration
         ConsoleApplication1/ConsoleApplication1/cascade.h
         ConsoleApplication1/ConsoleApplication1/global_variable.h)
 add_executable(QtTest
-        QtApplication/main.cpp)
+        QtApplication/main.cpp
+        QtApplication/mainWindow.cpp
+        QtApplication/mainWindow.h
+        QtApplication/mainwindow.ui)
 
 # opencv configuration
 set(OpenCV_DIR C:\\opencv\\mbuild\\install\\x64\\mingw\\lib)  # opencv lib in Windows
@@ -36,9 +47,5 @@ set(GTEST_LIBS
 target_link_libraries(UnitTest ${GTEST_LIBS})
 
 # Qt configuration
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTORCC ON)
 set(CMAKE_PREFIX_PATH C:/Qt/Qt5.12.12/5.12.12/mingw73_64/lib/cmake)
-find_package(Qt5 REQUIRED COMPONENTS Core Gui Widgets)
 target_link_libraries(QtTest Qt5::Core Qt5::Gui Qt5::Widgets)
