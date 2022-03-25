@@ -15,7 +15,7 @@ add_executable(FacialDecoration
         ConsoleApplication1/ConsoleApplication1/face_detect.cpp
         ConsoleApplication1/ConsoleApplication1/global_variable.h
         ConsoleApplication1/ConsoleApplication1/cascade.cpp
-        ConsoleApplication1/ConsoleApplication1/cascade.h)
+        ConsoleApplication1/ConsoleApplication1/cascade.h
         ConsoleApplication1/ConsoleApplication1/global_variable.h)
 add_executable(QtTest
         QtApplication/main.cpp)
