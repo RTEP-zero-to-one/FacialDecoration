@@ -29,7 +29,7 @@ add_executable(QtTest
         QtApplication/main.cpp
         QtApplication/mainWindow.cpp
         QtApplication/mainWindow.h
-        QtApplication/mainwindow.ui)
+        )
 
 # opencv configuration
 set(OpenCV_DIR C:\\opencv\\mbuild\\install\\x64\\mingw\\lib)  # opencv lib in Windows
