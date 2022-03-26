@@ -23,6 +23,7 @@ void MainWindow::readFrame()
 {
     // capture frame
     capture>>frame;
+    //    todo: show decoration
 
     // show realtime frame in the label
     QImage image = QImage((const uchar*)frame.data,frame.cols,frame.rows,QImage::Format_RGB888).rgbSwapped();
