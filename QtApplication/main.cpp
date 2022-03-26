@@ -1,7 +1,3 @@
-//
-// Created by paul on 2022/2/23.
-//
-
 #include <QApplication>
 #include "mainWindow.h"
 
