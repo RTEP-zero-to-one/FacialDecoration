@@ -35,6 +35,6 @@ jobs:
       run: cd ${{github.workspace}}/build && build
 
     - name: Run Test
-        run: cd /home/runner/work/FacialDecoration/FacialDecoration/build/UnitTest && ls
+      run: cd /home/runner/work/FacialDecoration/FacialDecoration/build/UnitTest && ls
 
       
