@@ -32,7 +32,7 @@ jobs:
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
     - name: Make
-      run: cd ${{github.workspace}}/build && build
+      run: cd ${{github.workspace}}/build && make
 
     - name: Run Test
       run: cd /home/runner/work/FacialDecoration/FacialDecoration/build/UnitTest && ls
