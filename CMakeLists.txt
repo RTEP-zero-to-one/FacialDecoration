@@ -27,4 +27,4 @@ target_link_libraries(FacialDecoration ${OpenCV_LIBS})
 target_link_libraries(UnitTest ${OpenCV_LIBS})
 
 # gTest configuration
-target_link_libraries(UnitTest gtest)
+target_link_libraries(UnitTest gtest pthread)
