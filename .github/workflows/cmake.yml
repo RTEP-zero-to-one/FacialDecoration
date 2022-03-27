@@ -32,13 +32,9 @@ jobs:
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
     - name: Make
-      run: cd ${{github.workspace}}/build && UnitTest
+      run: cd ${{github.workspace}}/build && build
 
-#    - name: Test
-#      working-directory: /home/runner/work/FacialDecoration/FacialDecoration/build
-#      # Execute tests defined by the CMake configuration.
-#      # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-#      run: |
-#        pwd
-#        ls -a
+    - name: Run Test
+        run: cd /home/runner/work/FacialDecoration/FacialDecoration/build/UnitTest && ls
+
       
