@@ -27,8 +27,8 @@ target_link_libraries(FacialDecoration ${OpenCV_LIBS})
 target_link_libraries(UnitTest ${OpenCV_LIBS})
 
 # gTest configuration
-add_subdirectory(./googletest-release-1.11.0)
-set(GTEST_LIBS
-        gtest
-        pthread)
-target_link_libraries(UnitTest ${GTEST_LIBS})
+#add_subdirectory(./googletest-release-1.11.0)
+#set(GTEST_LIBS
+#        gtest
+#        pthread)
+target_link_libraries(UnitTest gtest pthread)
