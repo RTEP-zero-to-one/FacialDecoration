@@ -20,13 +20,16 @@ add_executable(FacialDecoration
         ConsoleApplication1/ConsoleApplication1/face_detect.cpp
         ConsoleApplication1/ConsoleApplication1/global_variable.h
         ConsoleApplication1/ConsoleApplication1/cascade.cpp
-        ConsoleApplication1/ConsoleApplication1/cascade.h
-        ConsoleApplication1/ConsoleApplication1/global_variable.h)
+        ConsoleApplication1/ConsoleApplication1/cascade.h)
 add_executable(QtTest
         QtApplication/main.cpp
         QtApplication/mainWindow.cpp
         QtApplication/mainWindow.h
-        )
+        ConsoleApplication1/ConsoleApplication1/face_detect.h
+        ConsoleApplication1/ConsoleApplication1/face_detect.cpp
+        ConsoleApplication1/ConsoleApplication1/global_variable.h
+        ConsoleApplication1/ConsoleApplication1/cascade.cpp
+        ConsoleApplication1/ConsoleApplication1/cascade.h)
 
 # opencv configuration
 set(OpenCV_DIR C:\\opencv\\mbuild\\install\\x64\\mingw\\lib)  # opencv lib in Windows
