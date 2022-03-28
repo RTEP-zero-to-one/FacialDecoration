@@ -1,4 +1,4 @@
-name: GoogleTest
+name: UnitTests
 
 on:
   push:
