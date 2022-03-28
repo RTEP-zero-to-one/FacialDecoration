@@ -29,3 +29,6 @@ cmake-build-debug-gcc/
 *.pdb
 
 *.exe
+
+# googletest
+googletest-release-1.11.0/
