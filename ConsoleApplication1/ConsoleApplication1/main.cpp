@@ -22,7 +22,7 @@ int main()
 		cout << "摄像头没有打开！！！" << endl;
 		return -1;
 	}
-	Mat hat = imread("hat.jpeg");
+	Mat hat = imread("assets/hat.jpeg");
 	while (true) {
 		capture >> frame;
 		Detect detection;
