@@ -5,7 +5,7 @@
 
 using namespace cv;
 using namespace std;
-/*
+
 Mat filter(Mat &src, int style_num) {
     if (!style_num)
         return src;
@@ -57,8 +57,8 @@ Mat filter(Mat &src, int style_num) {
         }
         case FANTASY: {
             for (int y = 0; y < height; y++) {
-                auto *P0= src.ptr<uchar>(y);
-                auto *P1= result.ptr<uchar>(y);
+                auto *P0 = src.ptr<uchar>(y);
+                auto *P1 = result.ptr<uchar>(y);
                 for (int x = 0; x < width; x++) {
                     float b0 = P0[3 * x];
                     float g0 = P0[3 * x + 1];
@@ -90,16 +90,13 @@ Mat filter(Mat &src, int style_num) {
             new_channels[1] = original_channels[1] * original_channels[1] / 255;
             new_channels[2] = original_channels[2] * original_channels[2] / 255;
             merge(new_channels, result);
-<<<<<<< Updated upstream
-=======
-        case SUMMER:
-            int increaseLookupTable = LookupTable([0, 64, 128, 256], [0, 80, 160, 256]);
-            int decreaseLookupTable = LookupTable([0, 64, 128, 256], [0, 50, 100, 256]);
-            new_channels[2] = cv2.LUT(original_channels[2], increaseLookupTable).astype(np.uint8);
-            new_channels[0] = cv2.LUT(original_channels[0], decreaseLookupTable).astype(np.uint8);
-            merge(new_channels, result);
->>>>>>> Stashed changes
-            break;
+//        case SUMMER:
+//            int increaseLookupTable = LookupTable([0, 64, 128, 256], [0, 80, 160, 256]);
+//            int decreaseLookupTable = LookupTable([0, 64, 128, 256], [0, 50, 100, 256]);
+//            new_channels[2] = cv2.LUT(original_channels[2], increaseLookupTable).astype(np.uint8);
+//            new_channels[0] = cv2.LUT(original_channels[0], decreaseLookupTable).astype(np.uint8);
+//            merge(new_channels, result);
+//            break;
     }
     return result;
-}*/
+}
