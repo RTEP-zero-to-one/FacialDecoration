@@ -9,8 +9,12 @@
 #include "QTimer"
 #include "QImage"
 #include "opencv2/opencv.hpp"
+#include "../ConsoleApplication1/ConsoleApplication1/cascade.h"
+#include "../ConsoleApplication1/ConsoleApplication1/face_detect.h"
+
 
 using namespace cv;
+using namespace std;
 
 namespace Ui {
     class MainWindow;
@@ -18,7 +22,6 @@ namespace Ui {
 
 class MainWindow : public QMainWindow {
 Q_OBJECT
-
 public:
     explicit MainWindow(QWidget *parent = nullptr);
 
@@ -31,14 +34,15 @@ private slots:
     void openCamera();
 
     void closeCamera();
+
     void quit();
 
 private:
     Ui::MainWindow *ui;
     VideoCapture capture;
     QTimer *timer;
-    Mat frame;
-
+    Mat frame, hat;
+    Detect detection;
 };
 
 

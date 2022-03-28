@@ -1,10 +1,12 @@
 #include "mainWindow.h"
 #include "ui_mainWindow.h"
 
+
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow)
 {
+    loadCascade();
     ui->setupUi(this);
     setWindowTitle("Qt Application");
     timer = new QTimer(this);
@@ -23,10 +25,16 @@ void MainWindow::readFrame()
 {
     // capture frame
     capture>>frame;
-    //    todo: show decoration
+
+    hat = imread("assets/hat.jpeg");
+    detection.faceDetect(frame, cascade_face);
+    detection.eyeDetect(frame, cascade_eye);
+    detection.getAngle(frame);
+    displayDetection(frame, detection);
+    Mat afterProcess=detection.decorate(frame, hat);
 
     // show realtime frame in the label
-    QImage image = QImage((const uchar*)frame.data,frame.cols,frame.rows,QImage::Format_RGB888).rgbSwapped();
+    QImage image = QImage((const uchar*)afterProcess.data,afterProcess.cols,afterProcess.rows,QImage::Format_RGB888).rgbSwapped();
     ui->cameraShow->setPixmap(QPixmap::fromImage(image));
 }
 
