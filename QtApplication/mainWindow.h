@@ -28,21 +28,21 @@ public:
     ~MainWindow() override;
 
 private slots:
-
     void readFrame();
-
     void openCamera();
-
     void closeCamera();
-
     void quit();
+    void getDecorationImage();
+    void releaseDecoration();
+
 
 private:
     Ui::MainWindow *ui;
     VideoCapture capture;
     QTimer *timer;
-    Mat frame, hat;
+    Mat frame, decoratedItem,afterProcess;
     Detect detection;
+
 };
 
 
