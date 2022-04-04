@@ -41,12 +41,15 @@ void MainWindow::readFrame()
 void MainWindow::openCamera()
 {
     capture.open(0);
+    ui->startButton->setEnabled(false);
+    ui->pauseButton->setEnabled(true);
     timer->start(25);
 }
 
 void MainWindow::closeCamera()
 {
     timer->stop();
+    ui->startButton->setEnabled(true);
     capture.release();
 }
 

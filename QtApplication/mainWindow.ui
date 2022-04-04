@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>毕设Demo</string>
+   <string>Demo</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="startButton">
@@ -32,7 +32,7 @@
    </widget>
    <widget class="QPushButton" name="pauseButton">
     <property name="enabled">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -61,10 +61,13 @@
     <property name="text">
      <string/>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QPushButton" name="hatDecoration">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -99,6 +102,9 @@
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -109,6 +115,9 @@
    </property>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
