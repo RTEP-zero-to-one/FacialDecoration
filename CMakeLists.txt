@@ -11,25 +11,25 @@ set(CMAKE_AUTORCC ON)
 # execute configuration
 add_executable(UnitTest
         UnitTest/test_function.cpp
-        ConsoleApplication1/ConsoleApplication1/global_variable.h
-        ConsoleApplication1/ConsoleApplication1/img_process.cpp
-        ConsoleApplication1/ConsoleApplication1/img_process.h)
+        ImageProcess/global_variable.h
+        ImageProcess/img_process.cpp
+        ImageProcess/img_process.h)
 add_executable(FacialDecoration
-        ConsoleApplication1/ConsoleApplication1/main.cpp
-        ConsoleApplication1/ConsoleApplication1/face_detect.h
-        ConsoleApplication1/ConsoleApplication1/face_detect.cpp
-        ConsoleApplication1/ConsoleApplication1/global_variable.h
-        ConsoleApplication1/ConsoleApplication1/cascade.cpp
-        ConsoleApplication1/ConsoleApplication1/cascade.h)
+        ImageProcess/main.cpp
+        ImageProcess/face_detect.h
+        ImageProcess/face_detect.cpp
+        ImageProcess/global_variable.h
+        ImageProcess/cascade.cpp
+        ImageProcess/cascade.h)
 add_executable(QtTest
         QtApplication/main.cpp
         QtApplication/mainWindow.cpp
         QtApplication/mainWindow.h
-        ConsoleApplication1/ConsoleApplication1/face_detect.h
-        ConsoleApplication1/ConsoleApplication1/face_detect.cpp
-        ConsoleApplication1/ConsoleApplication1/global_variable.h
-        ConsoleApplication1/ConsoleApplication1/cascade.cpp
-        ConsoleApplication1/ConsoleApplication1/cascade.h)
+        ImageProcess/face_detect.h
+        ImageProcess/face_detect.cpp
+        ImageProcess/global_variable.h
+        ImageProcess/cascade.cpp
+        ImageProcess/cascade.h)
 
 # opencv configuration
 set(OpenCV_DIR C:\\opencv\\mbuild\\install\\x64\\mingw\\lib)  # opencv lib in Windows

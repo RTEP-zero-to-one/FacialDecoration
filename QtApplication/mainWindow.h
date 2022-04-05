@@ -9,8 +9,8 @@
 #include "QTimer"
 #include "QImage"
 #include "opencv2/opencv.hpp"
-#include "../ConsoleApplication1/ConsoleApplication1/cascade.h"
-#include "../ConsoleApplication1/ConsoleApplication1/face_detect.h"
+#include "../ImageProcess/cascade.h"
+#include "../ImageProcess/face_detect.h"
 
 
 using namespace cv;
