@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->hatDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->otherDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->releaseDecoration, SIGNAL(clicked()), this, SLOT(releaseDecoration()));
+    // todo: spinBox
 }
 
 MainWindow::~MainWindow() {
