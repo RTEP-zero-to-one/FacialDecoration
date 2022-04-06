@@ -34,6 +34,7 @@ private slots:
     void quit();
     void getDecorationImage();
     void releaseDecoration();
+    void spinBoxValueChanged(int arg);
 
 
 private:
