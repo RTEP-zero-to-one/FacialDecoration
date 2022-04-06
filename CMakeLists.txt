@@ -40,7 +40,15 @@ target_link_libraries(FacialDecoration ${OpenCV_LIBS})
 target_link_libraries(UnitTest ${OpenCV_LIBS})
 
 # gTest configuration
-target_link_libraries(UnitTest gtest pthread)
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    add_subdirectory(./googletest-release-1.11.0)
+    set(GTEST_LIBS
+            gtest
+            pthread)
+    target_link_libraries(UnitTest ${GTEST_LIBS})
+else ()
+    target_link_libraries(UnitTest gtest pthread)
+endif ()
 
 # Qt configuration
 set(CMAKE_PREFIX_PATH C:/Qt/Qt5.12.12/5.12.12/mingw73_64/lib/cmake)
