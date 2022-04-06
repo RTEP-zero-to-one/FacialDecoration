@@ -12,8 +12,8 @@ set(CMAKE_AUTORCC ON)
 add_executable(UnitTest
         UnitTest/test_function.cpp
         ImageProcess/global_variable.h
-        ImageProcess/img_process.cpp
-        ImageProcess/img_process.h)
+        ImageProcess/filter_process.cpp
+        ImageProcess/filter_process.h)
 add_executable(FacialDecoration
         ImageProcess/main.cpp
         ImageProcess/face_detect.h
