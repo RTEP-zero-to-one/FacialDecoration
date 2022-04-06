@@ -15,10 +15,10 @@ extern Rect noseRect;
 extern Rect eyeRect;
 extern Rect mouthRect;
 extern Mat hat;
-#define FACE_XML "face_detect.xml"
-#define NOSE_XML "nose_detect.xml"
-#define EYE_XML "haarcascade_eye_tree_eyeglasses.xml"
-#define MOUTH_XML "mouth_detect.xml"
+#define FACE_XML "assets/face_detect.xml"
+#define NOSE_XML "assets/nose_detect.xml"
+#define EYE_XML "assets/haarcascade_eye_tree_eyeglasses.xml"
+#define MOUTH_XML "assets/mouth_detect.xml"
 #define MINISCALE 5
 #define OLDFASHION 1
 #define COMICBOOK 2

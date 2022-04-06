@@ -164,7 +164,7 @@ bool Detect::getAngle(const Mat& src) {
 	
 }
 Mat Detect::decorate(const Mat& src, const Mat& res) {
-	if (faceRect.area() == 0) {
+	if (faceRect.area() == 0||res.empty()) {
 		return src;
 	}
 	Mat img = src.clone();

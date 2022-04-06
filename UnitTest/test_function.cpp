@@ -1,5 +1,5 @@
-#include "../ConsoleApplication1/ConsoleApplication1/global_variable.h"
-#include "../ConsoleApplication1/ConsoleApplication1/img_process.h"
+#include "../ImageProcess/global_variable.h"
+#include "../ImageProcess/img_process.h"
 #include "gtest/gtest.h"
 #include "iostream"
 
