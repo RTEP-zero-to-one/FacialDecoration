@@ -2,9 +2,9 @@ name: CompileTest
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ dev, gui ]
   pull_request:
-    branches: [ dev ]
+    branches: [ dev, gui ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
