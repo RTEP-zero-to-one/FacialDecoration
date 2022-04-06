@@ -10,6 +10,10 @@ TEST(OpenCVTest, filter_OLDFASHION) {
     if (!src.empty()) {
         result = filter(src, OLDFASHION);
     }
+    else {
+        Mat img1(500, 500, CV_8UC3, Scalar(10, 100, 150));
+        result = filter(img1, OLDFASHION);
+    }
 //    imwrite("../assets/OLDFASHION.png", result);
 }
 
@@ -18,6 +22,10 @@ TEST(OpenCVTest, filter_COMICBOOK) {
     src = imread("../assets/img.png", IMREAD_ANYCOLOR);
     if (!src.empty()) {
         result = filter(src, COMICBOOK);
+    }
+    else {
+        Mat img1(500, 500, CV_8UC3, Scalar(10, 100, 150));
+        result = filter(img1, COMICBOOK);
     }
 //    imwrite("../assets/COMICBOOK.png", result);
 
@@ -29,6 +37,10 @@ TEST(OpenCVTest, filter_FANTASY) {
     if (!src.empty()) {
         result = filter(src, FANTASY);
     }
+    else {
+        Mat img1(500, 500, CV_8UC3, Scalar(10, 100, 150));
+        result = filter(img1, FANTASY);
+    }
 //    imwrite("../assets/FANTASY.png", result);
 
 }
@@ -38,6 +50,10 @@ TEST(OpenCVTest, filter_FREEZE) {
     src = imread("../assets/img.png", IMREAD_ANYCOLOR);
     if (!src.empty()) {
         result = filter(src, FREEZE);
+    }
+    else {
+        Mat img1(500, 500, CV_8UC3, Scalar(10, 100, 150));
+        result = filter(img1, FREEZE);
     }
 //    imwrite("../assets/FREEZE.png", result);
 
