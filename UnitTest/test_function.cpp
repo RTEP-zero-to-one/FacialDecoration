@@ -10,7 +10,6 @@ TEST(OpenCVTest, filter_OLDFASHION) {
     result = filter(src, OLDFASHION);
 //    imwrite("../assets/OLDFASHION.png", result);
 }
-//todo: other filters' test function
 
 TEST(OpenCVTest, filter_COMICBOOK) {
     Mat src, result;
