@@ -1,4 +1,4 @@
-name: UnitTests
+name: CompileTest
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
     # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
     runs-on: ubuntu-latest
     container:
-      image: xeonhis/rtep_dev:latest
+      image: xeonhis/rtep_dev:qt
 
     steps:
       - uses: actions/checkout@v2
