@@ -7,6 +7,7 @@ using namespace cv;
 using namespace std;
 
 Mat filter(Mat &src, int style_num) {
+    //todo: filter design and using in realtime process
     if (!style_num)
         return src;
     Mat result;

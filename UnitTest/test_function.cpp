@@ -9,6 +9,7 @@ TEST(OpenCVTest, imgprocess_OLDFASHION) {
     src = imread("../assets/img.png", IMREAD_ANYCOLOR);
     filter(src, FANTASY);
 }
+//todo: other filters' test function
 
 GTEST_API_ int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
