@@ -1,10 +1,10 @@
-name: BugFix-CompileTest
+name: CompileTest
 
 on:
   push:
-    branches: [ 14-bugfix-segmentation-fault-core-dumped-problem ]
+    branches: [ dev ]
   pull_request:
-    branches: [ 14-bugfix-segmentation-fault-core-dumped-problem ]
+    branches: [ dev ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
