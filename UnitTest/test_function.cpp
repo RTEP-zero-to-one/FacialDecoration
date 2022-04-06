@@ -3,18 +3,22 @@
 #include "gtest/gtest.h"
 #include "iostream"
 
-
+//todo: manually create image to test if imread is empty
 TEST(OpenCVTest, filter_OLDFASHION) {
     Mat src, result;
     src = imread("../assets/img.png", IMREAD_ANYCOLOR);
-    result = filter(src, OLDFASHION);
+    if (!src.empty()) {
+        result = filter(src, OLDFASHION);
+    }
 //    imwrite("../assets/OLDFASHION.png", result);
 }
 
 TEST(OpenCVTest, filter_COMICBOOK) {
     Mat src, result;
     src = imread("../assets/img.png", IMREAD_ANYCOLOR);
-    result = filter(src, COMICBOOK);
+    if (!src.empty()) {
+        result = filter(src, COMICBOOK);
+    }
 //    imwrite("../assets/COMICBOOK.png", result);
 
 }
@@ -22,7 +26,9 @@ TEST(OpenCVTest, filter_COMICBOOK) {
 TEST(OpenCVTest, filter_FANTASY) {
     Mat src, result;
     src = imread("../assets/img.png", IMREAD_ANYCOLOR);
-    result = filter(src, FANTASY);
+    if (!src.empty()) {
+        result = filter(src, FANTASY);
+    }
 //    imwrite("../assets/FANTASY.png", result);
 
 }
@@ -30,7 +36,9 @@ TEST(OpenCVTest, filter_FANTASY) {
 TEST(OpenCVTest, filter_FREEZE) {
     Mat src, result;
     src = imread("../assets/img.png", IMREAD_ANYCOLOR);
-    result = filter(src, FREEZE);
+    if (!src.empty()) {
+        result = filter(src, FREEZE);
+    }
 //    imwrite("../assets/FREEZE.png", result);
 
 }
@@ -38,7 +46,9 @@ TEST(OpenCVTest, filter_FREEZE) {
 //TEST(OpenCVTest, filter_DARKTONE) {
 //    Mat src, result;
 //    src = imread("../assets/img.png", IMREAD_ANYCOLOR);
-//    result = filter(src, DARKTONE);
+//    if (!src.empty()) {
+//        result = filter(src, DARKTONE);
+//    }
 //    imwrite("../assets/DARKTONE.png", result);
 //
 //}
