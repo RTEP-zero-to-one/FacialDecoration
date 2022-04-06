@@ -12,8 +12,8 @@ set(CMAKE_AUTORCC ON)
 add_executable(UnitTest
         UnitTest/test_function.cpp
         ImageProcess/global_variable.h
-        ImageProcess/img_process.cpp
-        ImageProcess/img_process.h)
+        ImageProcess/filter_process.cpp
+        ImageProcess/filter_process.h)
 add_executable(FacialDecoration
         ImageProcess/main.cpp
         ImageProcess/face_detect.h
@@ -40,11 +40,15 @@ target_link_libraries(FacialDecoration ${OpenCV_LIBS})
 target_link_libraries(UnitTest ${OpenCV_LIBS})
 
 # gTest configuration
-add_subdirectory(./googletest-release-1.11.0)
-set(GTEST_LIBS
-        gtest
-        pthread)
-target_link_libraries(UnitTest ${GTEST_LIBS})
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    add_subdirectory(./googletest-release-1.11.0)
+    set(GTEST_LIBS
+            gtest
+            pthread)
+    target_link_libraries(UnitTest ${GTEST_LIBS})
+else ()
+    target_link_libraries(UnitTest gtest pthread)
+endif ()
 
 # Qt configuration
 set(CMAKE_PREFIX_PATH C:/Qt/Qt5.12.12/5.12.12/mingw73_64/lib/cmake)
