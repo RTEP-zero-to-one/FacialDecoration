@@ -19,9 +19,9 @@ extern Mat hat;
 #define NOSE_XML "assets/nose_detect.xml"
 #define EYE_XML "assets/haarcascade_eye_tree_eyeglasses.xml"
 #define MOUTH_XML "assets/mouth_detect.xml"
-#define MINISCALE 5
 #define OLDFASHION 1
 #define COMICBOOK 2
 #define FANTASY 3
 #define FREEZE 4
+#define MINISCALE 5
 #define DARKTONE 6
