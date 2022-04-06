@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->releaseDecoration, SIGNAL(clicked()), this, SLOT(releaseDecoration()));
     // todo: spinBox
     connect(ui->spinBox_1, SIGNAL(valueChanged(int)),this, SLOT(spinBoxValueChanged(int)));
+    connect(ui->beautySlider_1, SIGNAL(valueChanged(int)),this, SLOT(sliderPositionChanged1(int)));
 }
 
 MainWindow::~MainWindow() {
@@ -74,4 +75,8 @@ void MainWindow::releaseDecoration() {
 
 void MainWindow::spinBoxValueChanged(int arg) {
 //    cout<<arg<<endl;
+}
+
+void MainWindow::sliderPositionChanged1(int arg) {
+//    cout << arg << endl;
 }
