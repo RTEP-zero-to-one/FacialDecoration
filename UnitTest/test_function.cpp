@@ -3,14 +3,13 @@
 #include "gtest/gtest.h"
 #include "iostream"
 
-//todo: manually create image to test if imread is empty
+
 TEST(OpenCVTest, filter_OLDFASHION) {
     Mat src, result;
     src = imread("../assets/img.png", IMREAD_ANYCOLOR);
     if (!src.empty()) {
         result = filter(src, OLDFASHION);
-    }
-    else {
+    } else {
         Mat img1(500, 500, CV_8UC3, Scalar(10, 100, 150));
         result = filter(img1, OLDFASHION);
     }
@@ -22,8 +21,7 @@ TEST(OpenCVTest, filter_COMICBOOK) {
     src = imread("../assets/img.png", IMREAD_ANYCOLOR);
     if (!src.empty()) {
         result = filter(src, COMICBOOK);
-    }
-    else {
+    } else {
         Mat img1(500, 500, CV_8UC3, Scalar(10, 100, 150));
         result = filter(img1, COMICBOOK);
     }
@@ -36,8 +34,7 @@ TEST(OpenCVTest, filter_FANTASY) {
     src = imread("../assets/img.png", IMREAD_ANYCOLOR);
     if (!src.empty()) {
         result = filter(src, FANTASY);
-    }
-    else {
+    } else {
         Mat img1(500, 500, CV_8UC3, Scalar(10, 100, 150));
         result = filter(img1, FANTASY);
     }
@@ -50,8 +47,7 @@ TEST(OpenCVTest, filter_FREEZE) {
     src = imread("../assets/img.png", IMREAD_ANYCOLOR);
     if (!src.empty()) {
         result = filter(src, FREEZE);
-    }
-    else {
+    } else {
         Mat img1(500, 500, CV_8UC3, Scalar(10, 100, 150));
         result = filter(img1, FREEZE);
     }
