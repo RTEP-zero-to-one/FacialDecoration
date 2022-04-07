@@ -1,5 +1,6 @@
 #include "mainWindow.h"
 #include "ui_mainWindow.h"
+#include "../ImageProcess/filter_process.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -19,8 +20,13 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->otherDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->releaseDecoration, SIGNAL(clicked()), this, SLOT(releaseDecoration()));
 
-    connect(ui->spinBox_1, SIGNAL(valueChanged(int)),this, SLOT(spinBoxValueChanged(int)));
-    connect(ui->beautySlider_1, SIGNAL(valueChanged(int)),this, SLOT(sliderPositionChanged1(int)));
+    connect(ui->spinBox_1, SIGNAL(valueChanged(int)), this, SLOT(spinBoxValueChanged(int)));
+    connect(ui->beautySlider_1, SIGNAL(valueChanged(int)), this, SLOT(sliderPositionChanged1(int)));
+
+    connect(ui->filter_OLDFASHION, SIGNAL(clicked()), this, SLOT(filterProcess()));
+    connect(ui->filter_COMICBOOK, SIGNAL(clicked()), this, SLOT(filterProcess()));
+    connect(ui->filter_FANTASY, SIGNAL(clicked()), this, SLOT(filterProcess()));
+    connect(ui->filter_FREEZE, SIGNAL(clicked()), this, SLOT(filterProcess()));
 }
 
 MainWindow::~MainWindow() {
@@ -34,6 +40,8 @@ void MainWindow::readFrame() {
     detection.faceDetect(frame, cascade_face);
     detection.eyeDetect(frame, cascade_eye);
     detection.getAngle(frame);
+//    frame = filterProcess();
+    MainWindow::frame = filter(MainWindow::frame, filterStyleNum);
     displayDetection(frame, detection);
     afterProcess = detection.decorate(frame, decoratedItem);
 
@@ -79,4 +87,17 @@ void MainWindow::spinBoxValueChanged(int arg) {
 
 void MainWindow::sliderPositionChanged1(int arg) {
 //    cout << arg << endl;
+}
+
+void MainWindow::filterProcess() {
+    string btnObj = ((QPushButton *) sender())->text().toStdString();
+    if (btnObj == "OLDFASHION") {
+        filterStyleNum = 1;
+    } else if (btnObj == "COMICBOOK") {
+        filterStyleNum = 2;
+    } else if (btnObj == "FANTASY") {
+        filterStyleNum = 3;
+    } else if (btnObj == "FREEZE") {
+        filterStyleNum = 4;
+    }
 }
