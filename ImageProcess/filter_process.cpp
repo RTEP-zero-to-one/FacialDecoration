@@ -125,8 +125,8 @@ Mat filter(Mat &src, int style_num) {
         }
             break;
         case WIND: {
-            int num = 10;//	num：Wind line density
-            int num1 = 20;//num1：Wind line length
+            int num = 20;//	num：Wind line density
+            int num1 = 40;//num1：Wind line length
             Mat src1u[3];
             split(src, src1u);
 
@@ -165,6 +165,7 @@ Mat filter(Mat &src, int style_num) {
             }
         }
             break;
+        case 
 //        case DARKTONE:
 //            new_channels[0] = original_channels[0] * original_channels[0] / 255;
 //            new_channels[1] = original_channels[1] * original_channels[1] / 255;
