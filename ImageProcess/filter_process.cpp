@@ -54,8 +54,8 @@ Mat filter(Mat &src, int style_num) {
             cvtColor(result, gray, COLOR_BGR2GRAY);
             normalize(gray, gray, 255, 0, NORM_MINMAX);
             result = gray;
-            break;
         }
+            break;
         case FANTASY: {
             for (int y = 0; y < height; y++) {
                 auto *P0 = src.ptr<uchar>(y);
