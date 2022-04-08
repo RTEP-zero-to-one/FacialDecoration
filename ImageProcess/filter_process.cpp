@@ -86,6 +86,27 @@ Mat filter(Mat &src, int style_num) {
             new_channels[2] = abs(original_channels[2] - original_channels[1] - original_channels[0]) * 3 / 2;
             merge(new_channels, result);
             break;
+        case SKETCH: {
+            Mat gray0, gray1;
+            cvtColor(src, gray0, COLOR_BGR2GRAY);
+            addWeighted(gray0, -1, NULL, 0, 255, gray1);
+            GaussianBlur(gray1, gray1, Size(11, 11), 0);
+
+            Mat result1(gray1.size(), CV_8UC1);
+            result = result1;
+            for (int y = 0; y < height; y++) {
+
+                auto *P0 = gray0.ptr<uchar>(y);
+                auto *P1 = gray1.ptr<uchar>(y);
+                auto *P = result.ptr<uchar>(y);
+                for (int x = 0; x < width; x++) {
+                    int tmp0 = P0[x];
+                    int tmp1 = P1[x];
+                    P[x] = (uchar) min((tmp0 + (tmp0 * tmp1) / (256 - tmp1)), 255);
+                }
+            }
+        }
+            break;
 //        case DARKTONE:
 //            new_channels[0] = original_channels[0] * original_channels[0] / 255;
 //            new_channels[1] = original_channels[1] * original_channels[1] / 255;

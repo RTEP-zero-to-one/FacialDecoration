@@ -25,3 +25,4 @@ extern Mat hat;
 #define FREEZE 4
 #define MINISCALE 5
 #define DARKTONE 6
+#define SKETCH 7
