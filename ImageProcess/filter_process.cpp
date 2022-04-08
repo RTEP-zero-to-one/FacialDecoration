@@ -166,7 +166,6 @@ Mat filter(Mat &src, int style_num) {
             }
         }
             break;
-        case 
 //        case DARKTONE:
 //            new_channels[0] = original_channels[0] * original_channels[0] / 255;
 //            new_channels[1] = original_channels[1] * original_channels[1] / 255;
