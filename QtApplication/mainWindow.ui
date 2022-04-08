@@ -239,7 +239,7 @@
    </widget>
    <widget class="QPushButton" name="filter_COMICBOOK">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -283,6 +283,38 @@
     </property>
     <property name="text">
      <string>FREEZE</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="filter_SKETCH">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>450</y>
+      <width>101</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>SKETCH</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="filter_WIND">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>510</y>
+      <width>101</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>WIND</string>
     </property>
    </widget>
   </widget>
