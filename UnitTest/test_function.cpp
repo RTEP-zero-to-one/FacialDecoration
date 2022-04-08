@@ -73,6 +73,20 @@ TEST(OpenCVTest, filter_SKETCH) {
 
 }
 
+TEST(OpenCVTest, filter_WIND) {
+    Mat src, result;
+    src = imread("../assets/img.png", IMREAD_ANYCOLOR);
+    if (!src.empty()) {
+        result = filter(src, WIND);
+    }
+    else {
+        Mat img1(500, 500, CV_8UC3, Scalar(10, 100, 150));
+        result = filter(img1, WIND);
+    }
+//    imwrite("../assets/FREEZE.png", result);
+
+}
+
 //TEST(OpenCVTest, filter_DARKTONE) {
 //    Mat src, result;
 //    src = imread("../assets/img.png", IMREAD_ANYCOLOR);

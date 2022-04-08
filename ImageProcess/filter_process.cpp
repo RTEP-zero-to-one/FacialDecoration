@@ -125,6 +125,47 @@ Mat filter(Mat &src, int style_num) {
             }
         }
             break;
+        case WIND: {
+            int num = 10;//	num：Wind line density
+            int num1 = 20;//num1：Wind line length
+            Mat src1u[3];
+            split(src, src1u);
+
+            src.copyTo(result);
+            Point center(width / 2, height / 2);
+            RNG rng;
+
+            for (int y = 0; y < height; y++) {
+                auto *P = result.ptr<uchar>(y);
+                {
+                    for (int i = 0; i < num; i++)
+                    {
+                        int newX = rng.uniform(i * width / num, (i + 1) * width / num);
+                        int newY = y;
+
+                        if (newX < 0)newX = 0;
+                        if (newX > width - 1)newX = width - 1;
+
+                        auto tmp0 = src1u[0].at<uchar>(newY, newX);
+                        auto tmp1 = src1u[1].at<uchar>(newY, newX);
+                        auto tmp2 = src1u[2].at<uchar>(newY, newX);
+
+                        for (int j = 0; j < num1; j++)
+                        {
+                            int tmpX = newX - j;//-：Wind to the left；+：Wind to the right
+
+                            if (tmpX < 0)tmpX = 0;
+                            if (tmpX > width - 1)tmpX = width - 1;
+
+                            P[tmpX * 3] = tmp0;
+                            P[tmpX * 3 + 1] = tmp1;
+                            P[tmpX * 3 + 2] = tmp2;
+                        }
+                    }
+                }
+            }
+        }
+            break;
 //        case DARKTONE:
 //            new_channels[0] = original_channels[0] * original_channels[0] / 255;
 //            new_channels[1] = original_channels[1] * original_channels[1] / 255;
