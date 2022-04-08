@@ -27,6 +27,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->filter_COMICBOOK, SIGNAL(clicked()), this, SLOT(filterProcess()));
     connect(ui->filter_FANTASY, SIGNAL(clicked()), this, SLOT(filterProcess()));
     connect(ui->filter_FREEZE, SIGNAL(clicked()), this, SLOT(filterProcess()));
+    connect(ui->filter_SKETCH, SIGNAL(clicked()), this, SLOT(filterProcess()));
+    connect(ui->filter_WIND, SIGNAL(clicked()), this, SLOT(filterProcess()));
 }
 
 MainWindow::~MainWindow() {
@@ -42,6 +44,7 @@ void MainWindow::readFrame() {
     detection.getAngle(frame);
 //    frame = filterProcess();
     MainWindow::frame = filter(MainWindow::frame, filterStyleNum);
+    cout<<filterStyleNum<<endl;
     displayDetection(frame, detection);
     afterProcess = detection.decorate(frame, decoratedItem);
 
@@ -99,5 +102,9 @@ void MainWindow::filterProcess() {
         filterStyleNum = 3;
     } else if (btnObj == "FREEZE") {
         filterStyleNum = 4;
+    }else if(btnObj == "SKETCH"){
+        filterStyleNum = 7;
+    }else if(btnObj == "WIND"){
+        filterStyleNum = 8;
     }
 }

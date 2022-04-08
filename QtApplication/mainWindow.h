@@ -45,7 +45,7 @@ private:
     QTimer *timer;
     Mat frame, decoratedItem,afterProcess;
     Detect detection;
-    int filterStyleNum;
+    int filterStyleNum=0;
 };
 
 
