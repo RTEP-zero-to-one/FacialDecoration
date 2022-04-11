@@ -5,8 +5,8 @@
 class Detect {
 friend void displayDetection(const Mat&,const Detect&);
 private:
-	int miniScaleFace = 5;
-	int miniScaleEye = 2;
+	int miniScaleFace = 10;
+	int miniScaleEye = 5;
 	Rect leftEyeRect;
 	Rect rightEyeRect;
 	Rect faceRect;

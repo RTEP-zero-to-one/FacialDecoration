@@ -276,18 +276,18 @@ bool Detect::noseDetect(const Mat& src, CascadeClassifier& cascade)
 	noseRect = noseLocation;
 	return 1;
 }
-void displayDetection(const Mat& src, const Detect& detection) {
-	Mat frame = src.clone();
-	if (detection.leftEyeRect.area()) {
-		rectangle(frame, detection.leftEyeRect, Scalar(0, 255, 0), 2);
-	}
-	if (detection.rightEyeRect.area()) {
-		rectangle(frame, detection.rightEyeRect, Scalar(0, 255, 0), 2);
-	}
-	if (detection.faceRect.area()) {
-		rectangle(frame, detection.faceRect, Scalar(0, 0, 255), 2);
-	}
-	circle(frame, detection.leftEyeCenter, 3, Scalar(0, 0, 255), 3, 8);
-	circle(frame, detection.rightEyeCenter, 3, Scalar(0, 0, 255), 3, 8);
-	imshow("Detection Result", frame);
-}
+//void displayDetection(const Mat& src, const Detect& detection) {
+//	Mat frame = src.clone();
+//	if (detection.leftEyeRect.area()) {
+//		rectangle(frame, detection.leftEyeRect, Scalar(0, 255, 0), 2);
+//	}
+//	if (detection.rightEyeRect.area()) {
+//		rectangle(frame, detection.rightEyeRect, Scalar(0, 255, 0), 2);
+//	}
+//	if (detection.faceRect.area()) {
+//		rectangle(frame, detection.faceRect, Scalar(0, 0, 255), 2);
+//	}
+//	circle(frame, detection.leftEyeCenter, 3, Scalar(0, 0, 255), 3, 8);
+//	circle(frame, detection.rightEyeCenter, 3, Scalar(0, 0, 255), 3, 8);
+//	imshow("Detection Result", frame);
+//}
