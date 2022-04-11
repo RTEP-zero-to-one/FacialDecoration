@@ -56,6 +56,8 @@ void MainWindow::readFrame() {
 
 void MainWindow::openCamera() {
     capture.open(0);
+    capture.set(CAP_PROP_FRAME_WIDTH,640);
+    capture.set(CAP_PROP_FRAME_HEIGHT,360);
     ui->startButton->setEnabled(false);
     ui->pauseButton->setEnabled(true);
     timer->start(25);
