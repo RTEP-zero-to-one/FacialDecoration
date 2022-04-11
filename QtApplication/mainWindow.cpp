@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pauseButton, SIGNAL(clicked()), this, SLOT(closeCamera()));
     connect(ui->quitButton, SIGNAL(clicked()), this, SLOT(quit()));
 
+    //todo: remove hat button and decoration function
     connect(ui->hatDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->aizenDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->batmanDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
