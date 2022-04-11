@@ -37,7 +37,7 @@ Mat filter(Mat &src, int style_num) {
             new_channels[0] = abs(
                     original_channels[1] - original_channels[0] + original_channels[0] + original_channels[2]).mul(
                     0.0039 * original_channels[1]);
-            cv::merge(new_channels, img);
+            cv::merge(new_channels, result);
             break;
         case FANTASY: {
             for (int y = 0; y < height; y++) {
