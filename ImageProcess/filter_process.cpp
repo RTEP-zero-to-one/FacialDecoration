@@ -27,33 +27,17 @@ Mat filter(Mat &src, int style_num) {
                     0.393 * original_channels[2] + 0.769 * original_channels[1] + 0.189 * original_channels[0];
             merge(new_channels, result);
             break;
-        case COMICBOOK: {
-            for (int y = 0; y < height; y++) {
-                auto *P0 = src.ptr<uchar>(y);
-                auto *P1 = result.ptr<uchar>(y);
-                for (int x = 0; x < width; x++) {
-                    float B = P0[3 * x];
-                    float G = P0[3 * x + 1];
-                    float R = P0[3 * x + 2];
-                    float newB = abs(B - G + B + R) * G / 256;
-                    float newG = abs(B - G + B + R) * R / 256;
-                    float newR = abs(G - B + G + R) * R / 256;
-                    if (newB < 0)newB = 0;
-                    if (newB > 255)newB = 255;
-                    if (newG < 0)newG = 0;
-                    if (newG > 255)newG = 255;
-                    if (newR < 0)newR = 0;
-                    if (newR > 255)newR = 255;
-                    P1[3 * x] = (uchar) newB;
-                    P1[3 * x + 1] = (uchar) newG;
-                    P1[3 * x + 2] = (uchar) newR;
-                }
-            }
-            Mat gray;
-            cvtColor(result, gray, COLOR_BGR2GRAY);
-            normalize(gray, gray, 255, 0, NORM_MINMAX);
-            result = gray;
-        }
+        case COMICBOOK:
+            new_channels[2] = abs(
+                    original_channels[0] - original_channels[1] + original_channels[1] + original_channels[2]).mul(
+                    0.0039 * original_channels[2]);
+            new_channels[1] = abs(
+                    original_channels[1] - original_channels[0] + original_channels[0] + original_channels[2]).mul(
+                    0.0039 * original_channels[2]);
+            new_channels[0] = abs(
+                    original_channels[1] - original_channels[0] + original_channels[0] + original_channels[2]).mul(
+                    0.0039 * original_channels[1]);
+            cv::merge(new_channels, img);
             break;
         case FANTASY: {
             for (int y = 0; y < height; y++) {
@@ -137,8 +121,7 @@ Mat filter(Mat &src, int style_num) {
             for (int y = 0; y < height; y++) {
                 auto *P = result.ptr<uchar>(y);
                 {
-                    for (int i = 0; i < num; i++)
-                    {
+                    for (int i = 0; i < num; i++) {
                         int newX = rng.uniform(i * width / num, (i + 1) * width / num);
                         int newY = y;
 
@@ -149,8 +132,7 @@ Mat filter(Mat &src, int style_num) {
                         auto tmp1 = src1u[1].at<uchar>(newY, newX);
                         auto tmp2 = src1u[2].at<uchar>(newY, newX);
 
-                        for (int j = 0; j < num1; j++)
-                        {
+                        for (int j = 0; j < num1; j++) {
                             int tmpX = newX - j;//-：Wind to the left；+：Wind to the right
 
                             if (tmpX < 0)tmpX = 0;

@@ -32,3 +32,4 @@ cmake-build-debug-gcc/
 
 # googletest
 googletest-release-1.11.0/
+cmake-build-debug-coverage/

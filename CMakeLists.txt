@@ -33,7 +33,7 @@ add_executable(QtTest
         ImageProcess/filter_process.cpp
         ImageProcess/filter_process.h
         ImageProcess/mythread.cpp
-        ImageProcess/mythread.h)
+        ImageProcess/mythread.h ImageProcess/CppThread.h)
 
 # opencv configuration
 set(OpenCV_DIR C:\\opencv\\mbuild\\install\\x64\\mingw\\lib)  # opencv lib in Windows
