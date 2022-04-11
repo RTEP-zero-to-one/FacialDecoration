@@ -45,7 +45,7 @@ void MainWindow::readFrame() {
 //    frame = filterProcess();
     MainWindow::frame = filter(MainWindow::frame, filterStyleNum);
     cout<<filterStyleNum<<endl;
-    displayDetection(frame, detection);
+//    displayDetection(frame, detection);
     afterProcess = detection.decorate(frame, decoratedItem);
 
     // show realtime frame in the label
