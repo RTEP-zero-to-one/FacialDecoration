@@ -17,7 +17,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->quitButton, SIGNAL(clicked()), this, SLOT(quit()));
 
     connect(ui->hatDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
-    connect(ui->otherDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
+    connect(ui->aizenDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
+    connect(ui->batmanDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
+    connect(ui->jojoDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
+    connect(ui->narutoDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
+    connect(ui->rengokuDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
+    connect(ui->tanjiroDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->releaseDecoration, SIGNAL(clicked()), this, SLOT(releaseDecoration()));
 
     connect(ui->spinBox_1, SIGNAL(valueChanged(int)), this, SLOT(spinBoxValueChanged(int)));
