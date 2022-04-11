@@ -157,32 +157,33 @@ bool Detect::getAngle(const Mat& src) {
 	leftEyeCenter.y=leftEyeRect.tl().y + leftEyeY;
 	rightEyeCenter.x = rightEyeRect.tl().x + rightEyeX;
 	rightEyeCenter.y=rightEyeRect.tl().y + rightEyeY;
-	diffY = rightEyeCenter.y - leftEyeCenter.y;            //ÓÒÑÛ±È×óÑÛ¸ßµÄÖµ
+	diffY = rightEyeCenter.y - leftEyeCenter.y;            //å³çœ¼æ¯”å·¦çœ¼é«˜çš„å€¼
 	diffX= rightEyeCenter.x - leftEyeCenter.x;
 	
 	return true;
 	
 }
 Mat Detect::decorate(const Mat& src, const Mat& res) {
-	if (faceRect.area() == 0||res.empty()) {
+	if (faceRect.area() == 0) {
 		return src;
 	}
 	Mat img = src.clone();
 	int length = res.cols;
-	int faceWidth = faceRect.width;//Á³¿í
-	int faceHeight = faceRect.height;//Á³¸ß
+	int faceWidth = faceRect.width;//è„¸å®½
+	int faceHeight = faceRect.height;//è„¸é«˜
 	Point faceCorner = faceRect.tl();
-	float resizeRate = faceWidth*1.5 / length;
+	float resizeRate = faceWidth*1.3 / length;
 	Mat resNew = transform(res);
 	resize(resNew, resNew, Size(cvRound(resNew.cols*resizeRate), cvRound(resNew.rows * resizeRate)));
-	int lengthofRes=resNew.cols;//ÐÂÃ±×Ó³¤¶È
-	int widthofRes = resNew.rows;//ÐÂÃ±×Ó¸ß¶È	
+	int lengthofRes=resNew.cols;//æ–°å¸½å­é•¿åº¦
+	int widthofRes = resNew.rows;//æ–°å¸½å­é«˜åº¦	
 	int roi_x, roi_y;
-	roi_x = cvRound(faceCorner.x - (resNew.cols - faceWidth) / 2) ;         //Ôö¼ÓÍ¸ÊÓ±ä»»Ë®Æ½Îó²î
-	roi_y = cvRound(faceCorner.y - resNew.rows * 1);		   //¸ÐÐËÈ¤ÇøÓòµÄy0                          --ÉÏÏÂÆ½ÒÆ¿ØÖÆ
-	int diff_x = img.cols - (roi_x + lengthofRes);//ÓÒ±ß³¬³ö±ß½ç´óÐ¡
-	int diff_y = img.rows - (roi_y + widthofRes);//ÏÂ±ß³¬³ö±ß½ç´óÐ¡
-	int diff_roi_x = roi_x;//×ó¶¥µãÎ»ÖÃ
+	roi_x = cvRound(faceCorner.x - (resNew.cols - faceWidth) / 2);         //å¢žåŠ é€è§†å˜æ¢æ°´å¹³è¯¯å·®
+	roi_y = cvRound(faceCorner.y- resNew.rows * 0.4);		   //æ„Ÿå…´è¶£åŒºåŸŸçš„y0                          --ä¸Šä¸‹å¹³ç§»æŽ§åˆ¶
+	//roi_y = cvRound(faceCorner.y - resNew.rows * 1);		   //æ„Ÿå…´è¶£åŒºåŸŸçš„y0                          --ä¸Šä¸‹å¹³ç§»æŽ§åˆ¶
+	int diff_x = img.cols - (roi_x + lengthofRes);//å³è¾¹è¶…å‡ºè¾¹ç•Œå¤§å°
+	int diff_y = img.rows - (roi_y + widthofRes);//ä¸‹è¾¹è¶…å‡ºè¾¹ç•Œå¤§å°
+	int diff_roi_x = roi_x;//å·¦é¡¶ç‚¹ä½ç½®
 	int diff_roi_y = roi_y;//
 	Rect resROI;
 	if (diff_roi_x >= 0 && diff_roi_y >= 0 && diff_x>=0&& diff_y>=0) {
@@ -204,23 +205,25 @@ Mat Detect::decorate(const Mat& src, const Mat& res) {
 		resNew(cv::Rect(-diff_roi_x, -diff_roi_y, lengthofRes + diff_x + diff_roi_x, widthofRes + diff_roi_y + diff_y)).copyTo(resNew);
 		resROI=Rect(roi_x - diff_roi_x, roi_y - diff_roi_y, lengthofRes, widthofRes);
 	}
-	Mat resGray;
-	Mat resMask;
-	Mat resMaskBlack;
-	Mat resFinal;
-	cv::cvtColor(resNew, resGray, COLOR_BGR2GRAY);
-//remove background
-	cv::threshold(resGray, resMaskBlack, 10, 255, THRESH_BINARY);
-	cv::bitwise_not(resMaskBlack, resMaskBlack);
-	cv::bitwise_or(resMaskBlack, resGray,resFinal);
-//remove white
-	cv::threshold(resFinal, resMask, 220, 255, THRESH_BINARY);
-	cv::bitwise_not(resMask, resMask);
+	//Mat resGray;
+	//Mat resMask;
+	//Mat resMaskBlack;
+	//Mat resFinal;
+	//cv::cvtColor(resNew, resGray, COLOR_BGR2GRAY);
+
+	//cv::threshold(resGray, resMaskBlack, 10, 255, THRESH_BINARY);
+	//cv::bitwise_not(resMaskBlack, resMaskBlack);
+	//cv::bitwise_or(resMaskBlack, resGray,resFinal);
+
+	//cv::threshold(resFinal, resMask, 220, 255, THRESH_BINARY);
+	//cv::bitwise_not(resMask, resMask);
 	Mat imageROI = img(resROI);
-	Mat element = getStructuringElement(MORPH_RECT, Size(3, 3));
-	Mat resMaskk;
-	erode(resMask, resMaskk, element);
-	resNew.copyTo(imageROI, resMaskk);
+	//Mat element = getStructuringElement(MORPH_RECT, Size(3, 3));
+	//Mat resMaskk;
+	//erode(resMask, resMaskk, element);
+	resNew.copyTo(imageROI, resNew);
+
+	//resNew.copyTo(imageROI, resMaskk);
 	return img;
 }
 Mat Detect::transform(const Mat& res) {
@@ -230,10 +233,10 @@ Mat Detect::transform(const Mat& res) {
 	float eyeTan =(diffY*1.0)/(diffX*1.0);
 	cout << eyeTan << endl;
 	float eyeAngle = atan(eyeTan) * 180.0/ 3.14159*(-1);
-	Point2f center(res.cols / 2, res.rows / 2);//ÖÐÐÄ
-	Mat M = getRotationMatrix2D(center, eyeAngle, 1);//¼ÆËãÐý×ªµÄ·ÂÉä±ä»»¾ØÕó 
+	Point2f center(res.cols / 2, res.rows / 2);//ä¸­å¿ƒ
+	Mat M = getRotationMatrix2D(center, eyeAngle, 1);//è®¡ç®—æ—‹è½¬çš„ä»¿å°„å˜æ¢çŸ©é˜µ 
 	Mat resNew;
-	warpAffine(res, resNew, M, Size(res.cols, res.rows));//·ÂÉä±ä»»
+	warpAffine(res, resNew, M, Size(res.cols, res.rows));//ä»¿å°„å˜æ¢
 	return resNew;
 	
 }
