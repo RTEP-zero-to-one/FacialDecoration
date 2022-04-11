@@ -36,6 +36,7 @@ private slots:
     void releaseDecoration();
     void spinBoxValueChanged(int arg);
     void sliderPositionChanged1(int position);
+    void filterProcess();
 
 
 private:
@@ -44,7 +45,7 @@ private:
     QTimer *timer;
     Mat frame, decoratedItem,afterProcess;
     Detect detection;
-
+    int filterStyleNum=0;
 };
 
 

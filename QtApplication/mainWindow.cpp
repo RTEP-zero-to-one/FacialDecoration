@@ -1,5 +1,6 @@
 #include "mainWindow.h"
 #include "ui_mainWindow.h"
+#include "../ImageProcess/filter_process.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -19,8 +20,15 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->otherDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->releaseDecoration, SIGNAL(clicked()), this, SLOT(releaseDecoration()));
 
-    connect(ui->spinBox_1, SIGNAL(valueChanged(int)),this, SLOT(spinBoxValueChanged(int)));
-    connect(ui->beautySlider_1, SIGNAL(valueChanged(int)),this, SLOT(sliderPositionChanged1(int)));
+    connect(ui->spinBox_1, SIGNAL(valueChanged(int)), this, SLOT(spinBoxValueChanged(int)));
+    connect(ui->beautySlider_1, SIGNAL(valueChanged(int)), this, SLOT(sliderPositionChanged1(int)));
+
+    connect(ui->filter_OLDFASHION, SIGNAL(clicked()), this, SLOT(filterProcess()));
+    connect(ui->filter_COMICBOOK, SIGNAL(clicked()), this, SLOT(filterProcess()));
+    connect(ui->filter_FANTASY, SIGNAL(clicked()), this, SLOT(filterProcess()));
+    connect(ui->filter_FREEZE, SIGNAL(clicked()), this, SLOT(filterProcess()));
+    connect(ui->filter_SKETCH, SIGNAL(clicked()), this, SLOT(filterProcess()));
+    connect(ui->filter_WIND, SIGNAL(clicked()), this, SLOT(filterProcess()));
 }
 
 MainWindow::~MainWindow() {
@@ -34,7 +42,10 @@ void MainWindow::readFrame() {
     detection.faceDetect(frame, cascade_face);
     detection.eyeDetect(frame, cascade_eye);
     detection.getAngle(frame);
-    displayDetection(frame, detection);
+//    frame = filterProcess();
+    MainWindow::frame = filter(MainWindow::frame, filterStyleNum);
+    cout<<filterStyleNum<<endl;
+//    displayDetection(frame, detection);
     afterProcess = detection.decorate(frame, decoratedItem);
 
     // show realtime frame in the label
@@ -45,6 +56,8 @@ void MainWindow::readFrame() {
 
 void MainWindow::openCamera() {
     capture.open(0);
+    capture.set(CAP_PROP_FRAME_WIDTH,640);
+    capture.set(CAP_PROP_FRAME_HEIGHT,480);
     ui->startButton->setEnabled(false);
     ui->pauseButton->setEnabled(true);
     timer->start(25);
@@ -79,4 +92,21 @@ void MainWindow::spinBoxValueChanged(int arg) {
 
 void MainWindow::sliderPositionChanged1(int arg) {
 //    cout << arg << endl;
+}
+
+void MainWindow::filterProcess() {
+    string btnObj = ((QPushButton *) sender())->text().toStdString();
+    if (btnObj == "OLDFASHION") {
+        filterStyleNum = 1;
+    } else if (btnObj == "COMICBOOK") {
+        filterStyleNum = 2;
+    } else if (btnObj == "FANTASY") {
+        filterStyleNum = 3;
+    } else if (btnObj == "FREEZE") {
+        filterStyleNum = 4;
+    }else if(btnObj == "SKETCH"){
+        filterStyleNum = 7;
+    }else if(btnObj == "WIND"){
+        filterStyleNum = 8;
+    }
 }

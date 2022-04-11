@@ -29,7 +29,9 @@ add_executable(QtTest
         ImageProcess/face_detect.cpp
         ImageProcess/global_variable.h
         ImageProcess/cascade.cpp
-        ImageProcess/cascade.h)
+        ImageProcess/cascade.h
+        ImageProcess/filter_process.cpp
+        ImageProcess/filter_process.h)
 
 # opencv configuration
 set(OpenCV_DIR C:\\opencv\\mbuild\\install\\x64\\mingw\\lib)  # opencv lib in Windows
