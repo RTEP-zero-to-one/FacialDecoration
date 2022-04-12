@@ -1,7 +1,6 @@
 #include "filter_process.h"
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui.hpp>
-//#include <opencv2/imgproc/types_c.h>
 
 using namespace cv;
 using namespace std;
@@ -106,6 +105,7 @@ Mat filter(Mat &src, int style_num) {
                     P[x] = (uchar) min((tmp0 + (tmp0 * tmp1) / (256 - tmp1)), 255);
                 }
             }
+            cvtColor(result,result,COLOR_GRAY2RGB);
         }
             break;
         case WIND: {
@@ -147,12 +147,6 @@ Mat filter(Mat &src, int style_num) {
             }
         }
             break;
-//        case DARKTONE:
-//            new_channels[0] = original_channels[0] * original_channels[0] / 255;
-//            new_channels[1] = original_channels[1] * original_channels[1] / 255;
-//            new_channels[2] = original_channels[2] * original_channels[2] / 255;
-//            merge(new_channels, result);
-//            break;
         default:
             break;
 
