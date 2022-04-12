@@ -16,8 +16,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pauseButton, SIGNAL(clicked()), this, SLOT(closeCamera()));
     connect(ui->quitButton, SIGNAL(clicked()), this, SLOT(quit()));
 
-    //todo: remove hat button and decoration function
-    connect(ui->hatDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->aizenDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->batmanDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->jojoDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
@@ -35,6 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->filter_FREEZE, SIGNAL(clicked()), this, SLOT(filterProcess()));
     connect(ui->filter_SKETCH, SIGNAL(clicked()), this, SLOT(filterProcess()));
     connect(ui->filter_WIND, SIGNAL(clicked()), this, SLOT(filterProcess()));
+    connect(ui->filter_ORIGINAL, SIGNAL(clicked()), this, SLOT(filterProcess()));
 }
 
 MainWindow::~MainWindow() {
@@ -59,8 +58,8 @@ void MainWindow::readFrame() {
 
 void MainWindow::openCamera() {
     capture.open(0);
-    capture.set(CAP_PROP_FRAME_WIDTH,640);
-    capture.set(CAP_PROP_FRAME_HEIGHT,480);
+    capture.set(CAP_PROP_FRAME_WIDTH, 640);
+    capture.set(CAP_PROP_FRAME_HEIGHT, 480);
     ui->startButton->setEnabled(false);
     ui->pauseButton->setEnabled(true);
     timer->start(25);
@@ -107,9 +106,11 @@ void MainWindow::filterProcess() {
         filterStyleNum = 3;
     } else if (btnObj == "FREEZE") {
         filterStyleNum = 4;
-    }else if(btnObj == "SKETCH"){
+    } else if (btnObj == "SKETCH") {
         filterStyleNum = 7;
-    }else if(btnObj == "WIND"){
+    } else if (btnObj == "WIND") {
         filterStyleNum = 8;
+    } else if (btnObj == "ORIGINAL") {
+        filterStyleNum = 0;
     }
 }
