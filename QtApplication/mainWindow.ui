@@ -99,6 +99,9 @@
     <property name="checkable">
      <bool>true</bool>
     </property>
+    <property name="autoExclusive">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QPushButton" name="releaseDecoration">
     <property name="enabled">
@@ -107,15 +110,18 @@
     <property name="geometry">
      <rect>
       <x>910</x>
-      <y>10</y>
-      <width>80</width>
+      <y>20</y>
+      <width>91</width>
       <height>40</height>
      </rect>
     </property>
     <property name="text">
-     <string>release</string>
+     <string>Remove</string>
     </property>
     <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="autoExclusive">
      <bool>true</bool>
     </property>
    </widget>
@@ -316,6 +322,9 @@
     <property name="checkable">
      <bool>true</bool>
     </property>
+    <property name="autoExclusive">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QPushButton" name="jojoDecoration">
     <property name="enabled">
@@ -333,6 +342,9 @@
      <string>Jojo</string>
     </property>
     <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="autoExclusive">
      <bool>true</bool>
     </property>
    </widget>
@@ -354,6 +366,9 @@
     <property name="checkable">
      <bool>true</bool>
     </property>
+    <property name="autoExclusive">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QPushButton" name="rengokuDecoration">
     <property name="enabled">
@@ -373,6 +388,9 @@
     <property name="checkable">
      <bool>true</bool>
     </property>
+    <property name="autoExclusive">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QPushButton" name="tanjiroDecoration">
     <property name="enabled">
@@ -390,6 +408,9 @@
      <string>Tanjiro</string>
     </property>
     <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="autoExclusive">
      <bool>true</bool>
     </property>
    </widget>
