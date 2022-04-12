@@ -48,14 +48,11 @@ void MainWindow::readFrame() {
     detection.faceDetect(frame, cascade_face);
     detection.eyeDetect(frame, cascade_eye);
     detection.getAngle(frame);
-//    frame = filterProcess();
+    frame = detection.decorate(frame, decoratedItem);
     MainWindow::frame = filter(MainWindow::frame, filterStyleNum);
-    cout<<filterStyleNum<<endl;
-//    displayDetection(frame, detection);
-    afterProcess = detection.decorate(frame, decoratedItem);
 
     // show realtime frame in the label
-    QImage image = QImage((const uchar *) afterProcess.data, afterProcess.cols, afterProcess.rows,
+    QImage image = QImage((const uchar *) frame.data, frame.cols, frame.rows,
                           QImage::Format_RGB888).rgbSwapped();
     ui->cameraShow->setPixmap(QPixmap::fromImage(image));
 }
