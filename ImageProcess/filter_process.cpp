@@ -106,6 +106,7 @@ Mat filter(Mat &src, int style_num) {
                     P[x] = (uchar) min((tmp0 + (tmp0 * tmp1) / (256 - tmp1)), 255);
                 }
             }
+            cvtColor(result,result,COLOR_GRAY2RGB);
         }
             break;
         case WIND: {
