@@ -22,6 +22,17 @@ Mat whiteFace(const Mat& src){
     }
     return result;
 }
+Mat faceBlur(const Mat& src) {
+    Mat result;
+    int filterVal = 15;
+    GaussianBlur(src, src, Size(3, 3), 0, 0); // 高斯模糊，消除椒盐噪声
+    bilateralFilter(src, result, filterVal, filterVal * 2, filterVal / 2);
+    Mat final;
+
+    cv::GaussianBlur(result, final, cv::Size(0, 0), 3);
+    cv::addWeighted(result, 1.5, final, -0.5, 0, final);
+    return final;
+}
 Mat filter(Mat &src, int style_num) {
     if (!style_num)
         return src;
