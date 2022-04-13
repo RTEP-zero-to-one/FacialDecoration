@@ -2,10 +2,37 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui.hpp>
 //#include <opencv2/imgproc/types_c.h>
-
+#include<opencv2/imgproc/imgproc.hpp>
+#include<opencv2/objdetect/objdetect.hpp>
 using namespace cv;
 using namespace std;
+Mat whiteFace(const Mat& src){
+    Mat result = src.clone();
+    float alpha = 1.5;
+    int beta = 20;
+    for (int y = 0; y < src.rows; y++)
+    {
+        for (int x = 0; x < src.cols; x++)
+        {
+            for (int c = 0; c < 3; c++)
+            {
+                result.at<Vec3b>(y, x)[c] = saturate_cast<uchar>(alpha * (src.at<Vec3b>(y, x)[c]) + beta);
+            }
+        }
+    }
+    return result;
+}
+Mat faceBlur(const Mat& src) {
+    Mat result;
+    int filterVal = 15;
+    GaussianBlur(src, src, Size(3, 3), 0, 0); 
+    bilateralFilter(src, result, filterVal, filterVal * 2, filterVal / 2);
+    Mat final;
 
+    cv::GaussianBlur(result, final, cv::Size(0, 0), 3);
+    cv::addWeighted(result, 1.5, final, -0.5, 0, final);
+    return final;
+}
 Mat filter(Mat &src, int style_num) {
     if (!style_num)
         return src;

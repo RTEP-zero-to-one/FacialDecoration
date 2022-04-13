@@ -157,7 +157,7 @@ bool Detect::getAngle(const Mat& src) {
 	leftEyeCenter.y=leftEyeRect.tl().y + leftEyeY;
 	rightEyeCenter.x = rightEyeRect.tl().x + rightEyeX;
 	rightEyeCenter.y=rightEyeRect.tl().y + rightEyeY;
-	diffY = rightEyeCenter.y - leftEyeCenter.y;            //右眼比左眼高的值
+	diffY = rightEyeCenter.y - leftEyeCenter.y;          
 	diffX= rightEyeCenter.x - leftEyeCenter.x;
 	
 	return true;
@@ -169,21 +169,21 @@ Mat Detect::decorate(const Mat& src, const Mat& res) {
 	}
 	Mat img = src.clone();
 	int length = res.cols;
-	int faceWidth = faceRect.width;//脸宽
-	int faceHeight = faceRect.height;//脸高
+	int faceWidth = faceRect.width;
+	int faceHeight = faceRect.height;
 	Point faceCorner = faceRect.tl();
 	float resizeRate = faceWidth*1.3 / length;
 	Mat resNew = transform(res);
 	resize(resNew, resNew, Size(cvRound(resNew.cols*resizeRate), cvRound(resNew.rows * resizeRate)));
-	int lengthofRes=resNew.cols;//新帽子长度
-	int widthofRes = resNew.rows;//新帽子高度	
+	int lengthofRes=resNew.cols;
+	int widthofRes = resNew.rows;	
 	int roi_x, roi_y;
-	roi_x = cvRound(faceCorner.x - (resNew.cols - faceWidth) / 2);         //增加透视变换水平误差
-	roi_y = cvRound(faceCorner.y- resNew.rows * 0.4);		   //感兴趣区域的y0                          --上下平移控制
-	//roi_y = cvRound(faceCorner.y - resNew.rows * 1);		   //感兴趣区域的y0                          --上下平移控制
-	int diff_x = img.cols - (roi_x + lengthofRes);//右边超出边界大小
-	int diff_y = img.rows - (roi_y + widthofRes);//下边超出边界大小
-	int diff_roi_x = roi_x;//左顶点位置
+	roi_x = cvRound(faceCorner.x - (resNew.cols - faceWidth) / 2); 
+	roi_y = cvRound(faceCorner.y- resNew.rows * 0.4);
+	//roi_y = cvRound(faceCorner.y - resNew.rows * 1);	
+	int diff_x = img.cols - (roi_x + lengthofRes);
+	int diff_y = img.rows - (roi_y + widthofRes);
+	int diff_roi_x = roi_x;
 	int diff_roi_y = roi_y;//
 	Rect resROI;
 	if (diff_roi_x >= 0 && diff_roi_y >= 0 && diff_x>=0&& diff_y>=0) {
@@ -203,6 +203,8 @@ Mat Detect::decorate(const Mat& src, const Mat& res) {
 			diff_y = 0;
 		}
 		resNew(cv::Rect(-diff_roi_x, -diff_roi_y, lengthofRes + diff_x + diff_roi_x, widthofRes + diff_roi_y + diff_y)).copyTo(resNew);
+		lengthofRes = resNew.cols;
+		widthofRes = resNew.rows;
 		resROI=Rect(roi_x - diff_roi_x, roi_y - diff_roi_y, lengthofRes, widthofRes);
 	}
 	//Mat resGray;
@@ -234,9 +236,9 @@ Mat Detect::transform(const Mat& res) {
 	cout << eyeTan << endl;
 	float eyeAngle = atan(eyeTan) * 180.0/ 3.14159*(-1);
 	Point2f center(res.cols / 2, res.rows / 2);//中心
-	Mat M = getRotationMatrix2D(center, eyeAngle, 1);//计算旋转的仿射变换矩阵 
+	Mat M = getRotationMatrix2D(center, eyeAngle, 1); 
 	Mat resNew;
-	warpAffine(res, resNew, M, Size(res.cols, res.rows));//仿射变换
+	warpAffine(res, resNew, M, Size(res.cols, res.rows));
 	return resNew;
 	
 }
