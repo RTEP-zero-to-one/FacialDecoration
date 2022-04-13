@@ -157,7 +157,7 @@ bool Detect::getAngle(const Mat& src) {
 	leftEyeCenter.y=leftEyeRect.tl().y + leftEyeY;
 	rightEyeCenter.x = rightEyeRect.tl().x + rightEyeX;
 	rightEyeCenter.y=rightEyeRect.tl().y + rightEyeY;
-	diffY = rightEyeCenter.y - leftEyeCenter.y;            //右眼比左眼高的值
+	diffY = rightEyeCenter.y - leftEyeCenter.y;          
 	diffX= rightEyeCenter.x - leftEyeCenter.x;
 	
 	return true;
@@ -236,9 +236,9 @@ Mat Detect::transform(const Mat& res) {
 	cout << eyeTan << endl;
 	float eyeAngle = atan(eyeTan) * 180.0/ 3.14159*(-1);
 	Point2f center(res.cols / 2, res.rows / 2);//中心
-	Mat M = getRotationMatrix2D(center, eyeAngle, 1);//计算旋转的仿射变换矩阵 
+	Mat M = getRotationMatrix2D(center, eyeAngle, 1); 
 	Mat resNew;
-	warpAffine(res, resNew, M, Size(res.cols, res.rows));//仿射变换
+	warpAffine(res, resNew, M, Size(res.cols, res.rows));
 	return resNew;
 	
 }
