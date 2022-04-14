@@ -47,7 +47,7 @@ private:
     Mat frame, decoratedItem,afterProcess;
     Detect detection;
     int filterStyleNum=0;
-    int whitenDegree;
+    int whitenDegree=0;
     int filterVal=0;
 };
 
