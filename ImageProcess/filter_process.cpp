@@ -6,9 +6,12 @@
 #include<opencv2/objdetect/objdetect.hpp>
 using namespace cv;
 using namespace std;
-Mat whiteFace(const Mat& src){
+Mat whiteFace(const Mat& src, int degree){
+    if(degree==0){
+        return src;
+    }
     Mat result = src.clone();
-    float alpha = 1.5;
+    float alpha = 0.5*degree;
     int beta = 20;
     for (int y = 0; y < src.rows; y++)
     {
@@ -22,9 +25,12 @@ Mat whiteFace(const Mat& src){
     }
     return result;
 }
-Mat faceBlur(const Mat& src) {
+Mat faceBlur(const Mat& src, int filterVal) {
+    if(filterVal == 0){
+        return src;
+    }
     Mat result;
-    int filterVal = 15;
+//    int filterVal = 15;
     GaussianBlur(src, src, Size(3, 3), 0, 0); 
     bilateralFilter(src, result, filterVal, filterVal * 2, filterVal / 2);
     Mat final;

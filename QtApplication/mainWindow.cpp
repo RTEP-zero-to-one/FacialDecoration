@@ -43,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->spinBox_1, SIGNAL(valueChanged(int)), this, SLOT(spinBoxValueChanged(int)));
     connect(ui->whitenSlider, SIGNAL(valueChanged(int)), this, SLOT(whitenPositionChanged(int)));
+    connect(ui->blurSlider, SIGNAL(valueChanged(int)), this, SLOT(blurPositionChanged(int)));
 
     connect(ui->filter_OLDFASHION, SIGNAL(clicked()), this, SLOT(filterProcess()));
     connect(ui->filter_COMICBOOK, SIGNAL(clicked()), this, SLOT(filterProcess()));
@@ -65,6 +66,8 @@ void MainWindow::readFrame() {
     detection.eyeDetect(frame, cascade_eye);
     detection.getAngle(frame);
     frame = detection.decorate(frame, decoratedItem);
+    MainWindow::frame = faceBlur(MainWindow::frame,filterVal);
+    MainWindow::frame = whiteFace(MainWindow::frame, whitenDegree);
     MainWindow::frame = filter(MainWindow::frame, filterStyleNum);
 
     // show realtime frame in the label
@@ -112,8 +115,8 @@ void MainWindow::getDecorationImage() {
     // get text of current button
     string btnString = ((QPushButton *) sender())->text().toStdString();
     // get object of current button
-    auto btn = qobject_cast<QPushButton*>(sender());
-    auto btnName= btn->objectName();
+    auto btn = qobject_cast<QPushButton *>(sender());
+    auto btnName = btn->objectName();
     auto currentButton = this->findChild<QPushButton *>(btnName);
 
     decoratedItem = imread("assets/" + btnString + ".jpeg");
@@ -133,7 +136,11 @@ void MainWindow::spinBoxValueChanged(int arg) {
 }
 
 void MainWindow::whitenPositionChanged(int arg) {
-    MainWindow::frame = whiteFace(MainWindow::frame);
+    whitenDegree = arg;
+}
+
+void MainWindow::blurPositionChanged(int arg) {
+    filterVal = arg;
 }
 
 void MainWindow::filterProcess() {
