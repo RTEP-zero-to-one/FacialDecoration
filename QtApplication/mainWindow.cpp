@@ -1,6 +1,7 @@
 #include "mainWindow.h"
 #include "ui_mainWindow.h"
 #include "../ImageProcess/filter_process.h"
+#include "thread"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -41,7 +42,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->releaseDecoration, SIGNAL(clicked()), this, SLOT(releaseDecoration()));
 
     connect(ui->spinBox_1, SIGNAL(valueChanged(int)), this, SLOT(spinBoxValueChanged(int)));
-    connect(ui->beautySlider_1, SIGNAL(valueChanged(int)), this, SLOT(sliderPositionChanged1(int)));
+    connect(ui->whitenSlider, SIGNAL(valueChanged(int)), this, SLOT(whitenPositionChanged(int)));
+    connect(ui->blurSlider, SIGNAL(valueChanged(int)), this, SLOT(blurPositionChanged(int)));
 
     connect(ui->filter_OLDFASHION, SIGNAL(clicked()), this, SLOT(filterProcess()));
     connect(ui->filter_COMICBOOK, SIGNAL(clicked()), this, SLOT(filterProcess()));
@@ -64,6 +66,8 @@ void MainWindow::readFrame() {
     detection.eyeDetect(frame, cascade_eye);
     detection.getAngle(frame);
     frame = detection.decorate(frame, decoratedItem);
+    MainWindow::frame = faceBlur(MainWindow::frame,filterVal);
+    MainWindow::frame = whiteFace(MainWindow::frame, whitenDegree);
     MainWindow::frame = filter(MainWindow::frame, filterStyleNum);
 
     // show realtime frame in the label
@@ -111,8 +115,8 @@ void MainWindow::getDecorationImage() {
     // get text of current button
     string btnString = ((QPushButton *) sender())->text().toStdString();
     // get object of current button
-    auto btn = qobject_cast<QPushButton*>(sender());
-    auto btnName= btn->objectName();
+    auto btn = qobject_cast<QPushButton *>(sender());
+    auto btnName = btn->objectName();
     auto currentButton = this->findChild<QPushButton *>(btnName);
 
     decoratedItem = imread("assets/" + btnString + ".jpeg");
@@ -131,8 +135,12 @@ void MainWindow::spinBoxValueChanged(int arg) {
 //    cout<<arg<<endl;
 }
 
-void MainWindow::sliderPositionChanged1(int arg) {
-//    cout << arg << endl;
+void MainWindow::whitenPositionChanged(int arg) {
+    whitenDegree = arg;
+}
+
+void MainWindow::blurPositionChanged(int arg) {
+    filterVal = arg;
 }
 
 void MainWindow::filterProcess() {

@@ -35,7 +35,8 @@ private slots:
     void getDecorationImage();
     void releaseDecoration();
     void spinBoxValueChanged(int arg);
-    void sliderPositionChanged1(int position);
+    void whitenPositionChanged(int position);
+    void blurPositionChanged(int position);
     void filterProcess();
 
 
@@ -46,6 +47,8 @@ private:
     Mat frame, decoratedItem,afterProcess;
     Detect detection;
     int filterStyleNum=0;
+    int whitenDegree;
+    int filterVal=0;
 };
 
 

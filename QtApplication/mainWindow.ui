@@ -138,9 +138,9 @@
      <number>30</number>
     </property>
    </widget>
-   <widget class="QLabel" name="label_1">
+   <widget class="QLabel" name="whitenLabel">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -151,10 +151,10 @@
      </rect>
     </property>
     <property name="text">
-     <string>label1</string>
+     <string>Whiten</string>
     </property>
    </widget>
-   <widget class="QSlider" name="beautySlider_2">
+   <widget class="QSlider" name="blurSlider">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -173,7 +173,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QSlider" name="beautySlider_1">
+   <widget class="QSlider" name="whitenSlider">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -192,9 +192,9 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="blurLabel">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -205,7 +205,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>label2</string>
+     <string>Blur</string>
     </property>
    </widget>
    <widget class="QPushButton" name="filter_OLDFASHION">
