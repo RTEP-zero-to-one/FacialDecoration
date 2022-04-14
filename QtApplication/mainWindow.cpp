@@ -1,6 +1,7 @@
 #include "mainWindow.h"
 #include "ui_mainWindow.h"
 #include "../ImageProcess/filter_process.h"
+#include "thread"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -41,7 +42,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->releaseDecoration, SIGNAL(clicked()), this, SLOT(releaseDecoration()));
 
     connect(ui->spinBox_1, SIGNAL(valueChanged(int)), this, SLOT(spinBoxValueChanged(int)));
-    connect(ui->beautySlider_1, SIGNAL(valueChanged(int)), this, SLOT(sliderPositionChanged1(int)));
+    connect(ui->whitenSlider, SIGNAL(valueChanged(int)), this, SLOT(whitenPositionChanged(int)));
 
     connect(ui->filter_OLDFASHION, SIGNAL(clicked()), this, SLOT(filterProcess()));
     connect(ui->filter_COMICBOOK, SIGNAL(clicked()), this, SLOT(filterProcess()));
@@ -131,8 +132,8 @@ void MainWindow::spinBoxValueChanged(int arg) {
 //    cout<<arg<<endl;
 }
 
-void MainWindow::sliderPositionChanged1(int arg) {
-//    cout << arg << endl;
+void MainWindow::whitenPositionChanged(int arg) {
+    MainWindow::frame = whiteFace(MainWindow::frame);
 }
 
 void MainWindow::filterProcess() {

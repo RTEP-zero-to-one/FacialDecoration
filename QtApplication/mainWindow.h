@@ -35,7 +35,7 @@ private slots:
     void getDecorationImage();
     void releaseDecoration();
     void spinBoxValueChanged(int arg);
-    void sliderPositionChanged1(int position);
+    void whitenPositionChanged(int position);
     void filterProcess();
 
 
