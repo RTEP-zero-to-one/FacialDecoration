@@ -3,6 +3,6 @@ if [ ! -d "build" ];then
 fi
 cmake -B build/ -DCMAKE_BUILD_TYPE=Release
 cmake --build build/ --config Release
-make
-cp build/FacialDecoration .
+cd build && make -j4
+cd .. && cp build/FacialDecoration .
 echo "Success! Now Run with ./FacialDecoration"
