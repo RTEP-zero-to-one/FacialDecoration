@@ -8,6 +8,7 @@
 #include <QMainWindow>
 #include "QTimer"
 #include "QImage"
+#include "QFile"
 #include "opencv2/opencv.hpp"
 #include "../ImageProcess/cascade.h"
 #include "../ImageProcess/face_detect.h"
@@ -34,8 +35,8 @@ private slots:
     void quit();
     void getDecorationImage();
     void releaseDecoration();
-    void spinBoxValueChanged(int arg);
-    void sliderPositionChanged1(int position);
+    void whitenPositionChanged(int position);
+    void blurPositionChanged(int position);
     void filterProcess();
 
 
@@ -46,6 +47,8 @@ private:
     Mat frame, decoratedItem,afterProcess;
     Detect detection;
     int filterStyleNum=0;
+    int whitenDegree=0;
+    int filterVal=0;
 };
 
 

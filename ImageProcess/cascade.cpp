@@ -1,5 +1,3 @@
-
-
 #include "cascade.h"
 CascadeClassifier cascade_face;
 CascadeClassifier cascade_nose;

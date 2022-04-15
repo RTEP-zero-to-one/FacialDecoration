@@ -15,13 +15,6 @@ add_executable(UnitTest
         ImageProcess/filter_process.cpp
         ImageProcess/filter_process.h)
 add_executable(FacialDecoration
-        ImageProcess/main.cpp
-        ImageProcess/face_detect.h
-        ImageProcess/face_detect.cpp
-        ImageProcess/global_variable.h
-        ImageProcess/cascade.cpp
-        ImageProcess/cascade.h)
-add_executable(QtTest
         QtApplication/main.cpp
         QtApplication/mainWindow.cpp
         QtApplication/mainWindow.h
@@ -34,7 +27,9 @@ add_executable(QtTest
         ImageProcess/filter_process.h)
 
 # opencv configuration
-set(OpenCV_DIR C:\\opencv\\mbuild\\install\\x64\\mingw\\lib)  # opencv lib in Windows
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    set(OpenCV_DIR C:\\opencv\\mbuild\\install\\x64\\mingw\\lib)  # opencv lib in Windows
+endif ()
 #set(OpenCV_DIR /opt/homebrew/Cellar/opencv/4.5.4_3/lib)  # opencv lib in Ubuntu
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
@@ -54,5 +49,5 @@ endif ()
 
 # Qt configuration
 set(CMAKE_PREFIX_PATH C:/Qt/Qt5.12.12/5.12.12/mingw73_64/lib/cmake)
-target_link_libraries(QtTest Qt5::Core Qt5::Gui Qt5::Widgets)
-target_link_libraries(QtTest ${OpenCV_LIBS})
+target_link_libraries(FacialDecoration Qt5::Core Qt5::Gui Qt5::Widgets)
+target_link_libraries(FacialDecoration ${OpenCV_LIBS})

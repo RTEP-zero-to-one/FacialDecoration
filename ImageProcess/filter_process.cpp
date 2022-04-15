@@ -1,14 +1,16 @@
 #include "filter_process.h"
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui.hpp>
-//#include <opencv2/imgproc/types_c.h>
 #include<opencv2/imgproc/imgproc.hpp>
 #include<opencv2/objdetect/objdetect.hpp>
 using namespace cv;
 using namespace std;
-Mat whiteFace(const Mat& src){
+Mat whiteFace(const Mat& src, int degree){
+    if(degree==0){
+        return src;
+    }
     Mat result = src.clone();
-    float alpha = 1.5;
+    float alpha = 0.5*degree;
     int beta = 20;
     for (int y = 0; y < src.rows; y++)
     {
@@ -22,9 +24,12 @@ Mat whiteFace(const Mat& src){
     }
     return result;
 }
-Mat faceBlur(const Mat& src) {
+Mat faceBlur(const Mat& src, int filterVal) {
+    if(filterVal == 0){
+        return src;
+    }
     Mat result;
-    int filterVal = 15;
+//    int filterVal = 15;
     GaussianBlur(src, src, Size(3, 3), 0, 0); 
     bilateralFilter(src, result, filterVal, filterVal * 2, filterVal / 2);
     Mat final;
@@ -54,33 +59,17 @@ Mat filter(Mat &src, int style_num) {
                     0.393 * original_channels[2] + 0.769 * original_channels[1] + 0.189 * original_channels[0];
             merge(new_channels, result);
             break;
-        case COMICBOOK: {
-            for (int y = 0; y < height; y++) {
-                auto *P0 = src.ptr<uchar>(y);
-                auto *P1 = result.ptr<uchar>(y);
-                for (int x = 0; x < width; x++) {
-                    float B = P0[3 * x];
-                    float G = P0[3 * x + 1];
-                    float R = P0[3 * x + 2];
-                    float newB = abs(B - G + B + R) * G / 256;
-                    float newG = abs(B - G + B + R) * R / 256;
-                    float newR = abs(G - B + G + R) * R / 256;
-                    if (newB < 0)newB = 0;
-                    if (newB > 255)newB = 255;
-                    if (newG < 0)newG = 0;
-                    if (newG > 255)newG = 255;
-                    if (newR < 0)newR = 0;
-                    if (newR > 255)newR = 255;
-                    P1[3 * x] = (uchar) newB;
-                    P1[3 * x + 1] = (uchar) newG;
-                    P1[3 * x + 2] = (uchar) newR;
-                }
-            }
-            Mat gray;
-            cvtColor(result, gray, COLOR_BGR2GRAY);
-            normalize(gray, gray, 255, 0, NORM_MINMAX);
-            result = gray;
-        }
+        case COMICBOOK:
+            new_channels[2] = abs(
+                    original_channels[0] - original_channels[1] + original_channels[1] + original_channels[2]).mul(
+                    0.0039 * original_channels[2]);
+            new_channels[1] = abs(
+                    original_channels[1] - original_channels[0] + original_channels[0] + original_channels[2]).mul(
+                    0.0039 * original_channels[2]);
+            new_channels[0] = abs(
+                    original_channels[1] - original_channels[0] + original_channels[0] + original_channels[2]).mul(
+                    0.0039 * original_channels[1]);
+            cv::merge(new_channels, result);
             break;
         case FANTASY: {
             for (int y = 0; y < height; y++) {
@@ -149,6 +138,7 @@ Mat filter(Mat &src, int style_num) {
                     P[x] = (uchar) min((tmp0 + (tmp0 * tmp1) / (256 - tmp1)), 255);
                 }
             }
+            cvtColor(result,result,COLOR_GRAY2RGB);
         }
             break;
         case WIND: {
@@ -164,8 +154,7 @@ Mat filter(Mat &src, int style_num) {
             for (int y = 0; y < height; y++) {
                 auto *P = result.ptr<uchar>(y);
                 {
-                    for (int i = 0; i < num; i++)
-                    {
+                    for (int i = 0; i < num; i++) {
                         int newX = rng.uniform(i * width / num, (i + 1) * width / num);
                         int newY = y;
 
@@ -176,8 +165,7 @@ Mat filter(Mat &src, int style_num) {
                         auto tmp1 = src1u[1].at<uchar>(newY, newX);
                         auto tmp2 = src1u[2].at<uchar>(newY, newX);
 
-                        for (int j = 0; j < num1; j++)
-                        {
+                        for (int j = 0; j < num1; j++) {
                             int tmpX = newX - j;//-：Wind to the left；+：Wind to the right
 
                             if (tmpX < 0)tmpX = 0;
@@ -192,12 +180,6 @@ Mat filter(Mat &src, int style_num) {
             }
         }
             break;
-//        case DARKTONE:
-//            new_channels[0] = original_channels[0] * original_channels[0] / 255;
-//            new_channels[1] = original_channels[1] * original_channels[1] / 255;
-//            new_channels[2] = original_channels[2] * original_channels[2] / 255;
-//            merge(new_channels, result);
-//            break;
         default:
             break;
 

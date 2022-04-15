@@ -233,7 +233,7 @@ Mat Detect::transform(const Mat& res) {
 		return res;
 	}
 	float eyeTan =(diffY*1.0)/(diffX*1.0);
-	cout << eyeTan << endl;
+//	cout << eyeTan << endl;
 	float eyeAngle = atan(eyeTan) * 180.0/ 3.14159*(-1);
 	Point2f center(res.cols / 2, res.rows / 2);//中心
 	Mat M = getRotationMatrix2D(center, eyeAngle, 1); 
