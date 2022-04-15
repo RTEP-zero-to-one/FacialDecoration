@@ -5,7 +5,6 @@
 #include "gtest/gtest.h"
 #include "iostream"
 
-
 TEST(FilterTest, OLDFASHION) {
     Mat src, result;
     src = imread("assets/img.png", IMREAD_ANYCOLOR);
@@ -82,7 +81,7 @@ TEST(DetectTest, Face) {
     EXPECT_EQ(result, 1);
 }
 
-
+//Please run in $ProjectDir
 GTEST_API_ int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
