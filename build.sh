@@ -5,4 +5,4 @@ cmake -B build/ -DCMAKE_BUILD_TYPE=Release
 cmake --build build/ --config Release
 make
 cp build/FacialDecoration .
-./FacialDecoration
+echo "Success! Now Run with ./FacialDecoration"
