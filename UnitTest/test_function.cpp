@@ -1,97 +1,87 @@
 #include "../ImageProcess/global_variable.h"
 #include "../ImageProcess/filter_process.h"
+#include "../ImageProcess/face_detect.cpp"
+#include "../ImageProcess/cascade.cpp"
 #include "gtest/gtest.h"
 #include "iostream"
 
 
-TEST(OpenCVTest, filter_OLDFASHION) {
+TEST(FilterTest, OLDFASHION) {
     Mat src, result;
-    src = imread("../assets/img.png", IMREAD_ANYCOLOR);
+    src = imread("assets/img.png", IMREAD_ANYCOLOR);
     if (!src.empty()) {
         result = filter(src, OLDFASHION);
     } else {
         Mat img1(500, 500, CV_8UC3, Scalar(10, 100, 150));
         result = filter(img1, OLDFASHION);
     }
-//    imwrite("../assets/OLDFASHION.png", result);
 }
 
-TEST(OpenCVTest, filter_COMICBOOK) {
+TEST(FilterTest, COMICBOOK) {
     Mat src, result;
-    src = imread("../assets/img.png", IMREAD_ANYCOLOR);
+    src = imread("assets/img.png", IMREAD_ANYCOLOR);
     if (!src.empty()) {
         result = filter(src, COMICBOOK);
     } else {
         Mat img1(500, 500, CV_8UC3, Scalar(10, 100, 150));
         result = filter(img1, COMICBOOK);
     }
-//    imwrite("../assets/COMICBOOK.png", result);
-
 }
 
-TEST(OpenCVTest, filter_FANTASY) {
+TEST(FilterTest, FANTASY) {
     Mat src, result;
-    src = imread("../assets/img.png", IMREAD_ANYCOLOR);
+    src = imread("assets/img.png", IMREAD_ANYCOLOR);
     if (!src.empty()) {
         result = filter(src, FANTASY);
     } else {
         Mat img1(500, 500, CV_8UC3, Scalar(10, 100, 150));
         result = filter(img1, FANTASY);
     }
-//    imwrite("../assets/FANTASY.png", result);
-
 }
 
-TEST(OpenCVTest, filter_FREEZE) {
+TEST(FilterTest, FREEZE) {
     Mat src, result;
-    src = imread("../assets/img.png", IMREAD_ANYCOLOR);
+    src = imread("assets/img.png", IMREAD_ANYCOLOR);
     if (!src.empty()) {
         result = filter(src, FREEZE);
     } else {
         Mat img1(500, 500, CV_8UC3, Scalar(10, 100, 150));
         result = filter(img1, FREEZE);
     }
-//    imwrite("../assets/FREEZE.png", result);
-
 }
 
-TEST(OpenCVTest, filter_SKETCH) {
+TEST(FilterTest, SKETCH) {
     Mat src, result;
-    src = imread("../assets/img.png", IMREAD_ANYCOLOR);
+    src = imread("assets/img.png", IMREAD_ANYCOLOR);
     if (!src.empty()) {
         result = filter(src, SKETCH);
-    }
-    else {
+    } else {
         Mat img1(500, 500, CV_8UC3, Scalar(10, 100, 150));
         result = filter(img1, SKETCH);
     }
-//    imwrite("../assets/FREEZE.png", result);
-
 }
 
-TEST(OpenCVTest, filter_WIND) {
+TEST(FilterTest, WIND) {
     Mat src, result;
-    src = imread("../assets/img.png", IMREAD_ANYCOLOR);
+    src = imread("assets/img.png", IMREAD_ANYCOLOR);
     if (!src.empty()) {
         result = filter(src, WIND);
-    }
-    else {
+    } else {
         Mat img1(500, 500, CV_8UC3, Scalar(10, 100, 150));
         result = filter(img1, WIND);
     }
-//    imwrite("../assets/FREEZE.png", result);
-
 }
 
-//TEST(OpenCVTest, filter_DARKTONE) {
-//    Mat src, result;
-//    src = imread("../assets/img.png", IMREAD_ANYCOLOR);
-//    if (!src.empty()) {
-//        result = filter(src, DARKTONE);
-//    }
-//    imwrite("../assets/DARKTONE.png", result);
-//
-//}
+TEST(DetectTest, Face) {
+    Mat src;
+    bool result;
+    Detect detection;
+    cascade_face.load(FACE_XML);
+    src = imread("assets/person.jpg", IMREAD_ANYCOLOR);
+    result = detection.faceDetect(src, cascade_face);
+    EXPECT_EQ(result, 1);
+}
+
 
 GTEST_API_ int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
