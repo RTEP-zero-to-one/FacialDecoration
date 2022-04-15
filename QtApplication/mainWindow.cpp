@@ -7,6 +7,11 @@
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow) {
+    QFile stylesheet("assets/stylesheet.qss");
+    stylesheet.open(QFile::ReadOnly);
+    QString setSheet = QLatin1String(stylesheet.readAll());
+    QWidget::setStyleSheet(setSheet);
+
     loadCascade();
     ui->setupUi(this);
     setWindowTitle("Qt Application");
@@ -41,7 +46,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->tanjiroDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->releaseDecoration, SIGNAL(clicked()), this, SLOT(releaseDecoration()));
 
-    connect(ui->spinBox_1, SIGNAL(valueChanged(int)), this, SLOT(spinBoxValueChanged(int)));
     connect(ui->whitenSlider, SIGNAL(valueChanged(int)), this, SLOT(whitenPositionChanged(int)));
     connect(ui->blurSlider, SIGNAL(valueChanged(int)), this, SLOT(blurPositionChanged(int)));
 
@@ -129,10 +133,6 @@ void MainWindow::getDecorationImage() {
 void MainWindow::releaseDecoration() {
     decoratedItem.release();
     ui->releaseDecoration->setVisible(false);
-}
-
-void MainWindow::spinBoxValueChanged(int arg) {
-//    cout<<arg<<endl;
 }
 
 void MainWindow::whitenPositionChanged(int arg) {
