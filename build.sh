@@ -1,10 +1,8 @@
 if [ ! -d "build" ];then
    mkdir -p "build"
 fi
-cd build
-cmake -B . -DCMAKE_BUILD_TYPE=Release
-cmake --build . --config Release
+cmake -B build/ -DCMAKE_BUILD_TYPE=Release
+cmake --build build/ --config Release
 make
-cp FacialDecoration ..
-cd ..
+cp build/FacialDecoration .
 ./FacialDecoration
