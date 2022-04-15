@@ -1,0 +1,37 @@
+# DS_Store
+.DS_Store
+
+# .vs compile files
+*/.vs
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
+
+# idea compile file
+.idea/
+
+# cmake debug file
+cmake-build-debug/
+
+cmake-build-debug-gcc/
+
+*.tlog
+
+*.obj
+
+*.ilk
+
+*.log
+
+*.idb
+
+*.pdb
+
+*.exe
+
+# googletest
+googletest-release-1.11.0/
+cmake-build-debug-coverage/
+
+cmake-build-release/
