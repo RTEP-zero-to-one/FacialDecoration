@@ -31,6 +31,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->filter_SKETCH->setVisible(false);
     ui->filter_WIND->setVisible(false);
     ui->filter_ORIGINAL->setVisible(false);
+    ui->whitenLabel->setVisible(false);
+    ui->whitenSlider->setVisible(false);
+    ui->blurLabel->setVisible(false);
+    ui->blurSlider-> setVisible(false);
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(readFrame()));
@@ -95,14 +99,16 @@ void MainWindow::openCamera() {
     ui->narutoDecoration->setVisible(true);
     ui->rengokuDecoration->setVisible(true);
     ui->tanjiroDecoration->setVisible(true);
-    ui->releaseDecoration->setVisible(true);
     ui->filter_OLDFASHION->setVisible(true);
     ui->filter_COMICBOOK->setVisible(true);
     ui->filter_FANTASY->setVisible(true);
     ui->filter_FREEZE->setVisible(true);
     ui->filter_SKETCH->setVisible(true);
     ui->filter_WIND->setVisible(true);
-    ui->filter_ORIGINAL->setVisible(true);
+    ui->whitenLabel->setVisible(true);
+    ui->whitenSlider->setVisible(true);
+    ui->blurLabel->setVisible(true);
+    ui->blurSlider-> setVisible(true);
 }
 
 void MainWindow::closeCamera() {
@@ -159,5 +165,10 @@ void MainWindow::filterProcess() {
         filterStyleNum = 8;
     } else if (btnObj == "ORIGINAL") {
         filterStyleNum = 0;
+    }
+    if(filterStyleNum ==0){
+        ui->filter_ORIGINAL->setVisible(false);
+    }else{
+        ui->filter_ORIGINAL->setVisible(true);
     }
 }
