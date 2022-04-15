@@ -35,4 +35,4 @@ jobs:
         run: cd ${{github.workspace}}/build && make
 
       - name: Run Test
-        run: cd ${{github.workspace}}/build && ./UnitTest
+        run: cd ${{github.workspace}}/build && cp UnitTest .. && cd .. && ./UnitTest
