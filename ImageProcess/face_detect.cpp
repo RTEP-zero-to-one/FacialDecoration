@@ -207,25 +207,9 @@ Mat Detect::decorate(const Mat& src, const Mat& res) {
 		widthofRes = resNew.rows;
 		resROI=Rect(roi_x - diff_roi_x, roi_y - diff_roi_y, lengthofRes, widthofRes);
 	}
-	//Mat resGray;
-	//Mat resMask;
-	//Mat resMaskBlack;
-	//Mat resFinal;
-	//cv::cvtColor(resNew, resGray, COLOR_BGR2GRAY);
-
-	//cv::threshold(resGray, resMaskBlack, 10, 255, THRESH_BINARY);
-	//cv::bitwise_not(resMaskBlack, resMaskBlack);
-	//cv::bitwise_or(resMaskBlack, resGray,resFinal);
-
-	//cv::threshold(resFinal, resMask, 220, 255, THRESH_BINARY);
-	//cv::bitwise_not(resMask, resMask);
 	Mat imageROI = img(resROI);
-	//Mat element = getStructuringElement(MORPH_RECT, Size(3, 3));
-	//Mat resMaskk;
-	//erode(resMask, resMaskk, element);
 	resNew.copyTo(imageROI, resNew);
 
-	//resNew.copyTo(imageROI, resMaskk);
 	return img;
 }
 Mat Detect::transform(const Mat& res) {

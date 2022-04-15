@@ -6,18 +6,18 @@ CascadeClassifier cascade_eye;
 void loadCascade() {
 	if (!cascade_face.load(FACE_XML))
 	{
-		printf("face cascade filter faile!\n");
+		printf("Face cascade XML file load failed!\n");
 	}
 	if (!cascade_nose.load(NOSE_XML))
 	{
-		printf("nose cascade filter faile!\n");
-	}
+        printf("Nose cascade XML file load failed!\n");
+    }
 	if (!cascade_eye.load(EYE_XML))
 	{
-		printf("eye cascade filter faile!\n");
-	}
+        printf("Eye cascade XML file load failed!\n");
+    }
 	if (!cascade_mouth.load(MOUTH_XML))
 	{
-		printf("mouth cascade filter faile!\n");
-	}
+        printf("Mouth cascade XML file load failed!\n");
+    }
 }
