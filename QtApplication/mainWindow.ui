@@ -382,7 +382,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="tanjiroDecoration">
+   <widget class="QPushButton" name="ramDecoration">
     <property name="enabled">
      <bool>true</bool>
     </property>
