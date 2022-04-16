@@ -37,7 +37,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->blurLabel->setVisible(false);
     ui->blurSlider-> setVisible(false);
 
-    ui->imageLabel->setStyleSheet("background-image: url(assets/logo.jpg);");
+    ui->imageLabel->setStyleSheet("background-image: url(assets/logo2.png);");
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(readFrame()));
