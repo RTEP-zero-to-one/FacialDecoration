@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QString setSheet = QLatin1String(stylesheet.readAll());
     QWidget::setStyleSheet(setSheet);
 
+
     loadCascade();
     ui->setupUi(this);
     setWindowTitle("Qt Application");
@@ -22,7 +23,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->jojoDecoration->setVisible(false);
     ui->narutoDecoration->setVisible(false);
     ui->rengokuDecoration->setVisible(false);
-    ui->tanjiroDecoration->setVisible(false);
+    ui->ramDecoration->setVisible(false);
+    ui->customDecoration->setVisible(false);
     ui->releaseDecoration->setVisible(false);
     ui->filter_OLDFASHION->setVisible(false);
     ui->filter_COMICBOOK->setVisible(false);
@@ -36,6 +38,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->blurLabel->setVisible(false);
     ui->blurSlider-> setVisible(false);
 
+    ui->imageLabel->setStyleSheet("background-image: url(assets/logo2.png);");
+
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(readFrame()));
     connect(ui->startButton, SIGNAL(clicked()), this, SLOT(openCamera()));
@@ -47,7 +51,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->jojoDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->narutoDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->rengokuDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
-    connect(ui->tanjiroDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
+    connect(ui->ramDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
+    connect(ui->customDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->releaseDecoration, SIGNAL(clicked()), this, SLOT(releaseDecoration()));
 
     connect(ui->whitenSlider, SIGNAL(valueChanged(int)), this, SLOT(whitenPositionChanged(int)));
@@ -98,7 +103,8 @@ void MainWindow::openCamera() {
     ui->jojoDecoration->setVisible(true);
     ui->narutoDecoration->setVisible(true);
     ui->rengokuDecoration->setVisible(true);
-    ui->tanjiroDecoration->setVisible(true);
+    ui->ramDecoration->setVisible(true);
+    ui->customDecoration->setVisible(true);
     ui->filter_OLDFASHION->setVisible(true);
     ui->filter_COMICBOOK->setVisible(true);
     ui->filter_FANTASY->setVisible(true);
