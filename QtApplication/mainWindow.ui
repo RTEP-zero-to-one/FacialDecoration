@@ -395,7 +395,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Tanjiro</string>
+     <string>Ram</string>
     </property>
     <property name="checkable">
      <bool>true</bool>
