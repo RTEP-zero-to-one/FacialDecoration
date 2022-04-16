@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->narutoDecoration->setVisible(false);
     ui->rengokuDecoration->setVisible(false);
     ui->ramDecoration->setVisible(false);
+    ui->customDecoration->setVisible(false);
     ui->releaseDecoration->setVisible(false);
     ui->filter_OLDFASHION->setVisible(false);
     ui->filter_COMICBOOK->setVisible(false);
@@ -51,6 +52,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->narutoDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->rengokuDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->ramDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
+    connect(ui->customDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->releaseDecoration, SIGNAL(clicked()), this, SLOT(releaseDecoration()));
 
     connect(ui->whitenSlider, SIGNAL(valueChanged(int)), this, SLOT(whitenPositionChanged(int)));
@@ -102,6 +104,7 @@ void MainWindow::openCamera() {
     ui->narutoDecoration->setVisible(true);
     ui->rengokuDecoration->setVisible(true);
     ui->ramDecoration->setVisible(true);
+    ui->customDecoration->setVisible(true);
     ui->filter_OLDFASHION->setVisible(true);
     ui->filter_COMICBOOK->setVisible(true);
     ui->filter_FANTASY->setVisible(true);
