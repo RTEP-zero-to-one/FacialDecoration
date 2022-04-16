@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QString setSheet = QLatin1String(stylesheet.readAll());
     QWidget::setStyleSheet(setSheet);
 
+
     loadCascade();
     ui->setupUi(this);
     setWindowTitle("Qt Application");
@@ -35,6 +36,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->whitenSlider->setVisible(false);
     ui->blurLabel->setVisible(false);
     ui->blurSlider-> setVisible(false);
+
+    ui->imageLabel->setStyleSheet("background-image: url(assets/logo2.png);");
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(readFrame()));
