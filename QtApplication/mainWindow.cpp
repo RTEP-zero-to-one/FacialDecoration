@@ -7,6 +7,12 @@
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow) {
+    QFile stylesheet("assets/stylesheet.qss");
+    stylesheet.open(QFile::ReadOnly);
+    QString setSheet = QLatin1String(stylesheet.readAll());
+    QWidget::setStyleSheet(setSheet);
+
+
     loadCascade();
     ui->setupUi(this);
     setWindowTitle("Qt Application");
@@ -17,7 +23,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->jojoDecoration->setVisible(false);
     ui->narutoDecoration->setVisible(false);
     ui->rengokuDecoration->setVisible(false);
-    ui->tanjiroDecoration->setVisible(false);
+    ui->ramDecoration->setVisible(false);
+    ui->customDecoration->setVisible(false);
     ui->releaseDecoration->setVisible(false);
     ui->filter_OLDFASHION->setVisible(false);
     ui->filter_COMICBOOK->setVisible(false);
@@ -26,6 +33,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->filter_SKETCH->setVisible(false);
     ui->filter_WIND->setVisible(false);
     ui->filter_ORIGINAL->setVisible(false);
+    ui->whitenLabel->setVisible(false);
+    ui->whitenSlider->setVisible(false);
+    ui->blurLabel->setVisible(false);
+    ui->blurSlider-> setVisible(false);
+
+    ui->imageLabel->setStyleSheet("background-image: url(assets/logo2.png);");
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(readFrame()));
@@ -38,11 +51,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->jojoDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->narutoDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->rengokuDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
-    connect(ui->tanjiroDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
+    connect(ui->ramDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
+    connect(ui->customDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->releaseDecoration, SIGNAL(clicked()), this, SLOT(releaseDecoration()));
 
-    connect(ui->spinBox_1, SIGNAL(valueChanged(int)), this, SLOT(spinBoxValueChanged(int)));
     connect(ui->whitenSlider, SIGNAL(valueChanged(int)), this, SLOT(whitenPositionChanged(int)));
+    connect(ui->blurSlider, SIGNAL(valueChanged(int)), this, SLOT(blurPositionChanged(int)));
 
     connect(ui->filter_OLDFASHION, SIGNAL(clicked()), this, SLOT(filterProcess()));
     connect(ui->filter_COMICBOOK, SIGNAL(clicked()), this, SLOT(filterProcess()));
@@ -65,6 +79,8 @@ void MainWindow::readFrame() {
     detection.eyeDetect(frame, cascade_eye);
     detection.getAngle(frame);
     frame = detection.decorate(frame, decoratedItem);
+    MainWindow::frame = faceBlur(MainWindow::frame,filterVal);
+    MainWindow::frame = whiteFace(MainWindow::frame, whitenDegree);
     MainWindow::frame = filter(MainWindow::frame, filterStyleNum);
 
     // show realtime frame in the label
@@ -87,15 +103,18 @@ void MainWindow::openCamera() {
     ui->jojoDecoration->setVisible(true);
     ui->narutoDecoration->setVisible(true);
     ui->rengokuDecoration->setVisible(true);
-    ui->tanjiroDecoration->setVisible(true);
-    ui->releaseDecoration->setVisible(true);
+    ui->ramDecoration->setVisible(true);
+    ui->customDecoration->setVisible(true);
     ui->filter_OLDFASHION->setVisible(true);
     ui->filter_COMICBOOK->setVisible(true);
     ui->filter_FANTASY->setVisible(true);
     ui->filter_FREEZE->setVisible(true);
     ui->filter_SKETCH->setVisible(true);
     ui->filter_WIND->setVisible(true);
-    ui->filter_ORIGINAL->setVisible(true);
+    ui->whitenLabel->setVisible(true);
+    ui->whitenSlider->setVisible(true);
+    ui->blurLabel->setVisible(true);
+    ui->blurSlider-> setVisible(true);
 }
 
 void MainWindow::closeCamera() {
@@ -112,8 +131,8 @@ void MainWindow::getDecorationImage() {
     // get text of current button
     string btnString = ((QPushButton *) sender())->text().toStdString();
     // get object of current button
-    auto btn = qobject_cast<QPushButton*>(sender());
-    auto btnName= btn->objectName();
+    auto btn = qobject_cast<QPushButton *>(sender());
+    auto btnName = btn->objectName();
     auto currentButton = this->findChild<QPushButton *>(btnName);
 
     decoratedItem = imread("assets/" + btnString + ".jpeg");
@@ -128,12 +147,12 @@ void MainWindow::releaseDecoration() {
     ui->releaseDecoration->setVisible(false);
 }
 
-void MainWindow::spinBoxValueChanged(int arg) {
-//    cout<<arg<<endl;
+void MainWindow::whitenPositionChanged(int arg) {
+    whitenDegree = arg;
 }
 
-void MainWindow::whitenPositionChanged(int arg) {
-    MainWindow::frame = whiteFace(MainWindow::frame);
+void MainWindow::blurPositionChanged(int arg) {
+    filterVal = arg;
 }
 
 void MainWindow::filterProcess() {
@@ -152,5 +171,10 @@ void MainWindow::filterProcess() {
         filterStyleNum = 8;
     } else if (btnObj == "ORIGINAL") {
         filterStyleNum = 0;
+    }
+    if(filterStyleNum ==0){
+        ui->filter_ORIGINAL->setVisible(false);
+    }else{
+        ui->filter_ORIGINAL->setVisible(true);
     }
 }

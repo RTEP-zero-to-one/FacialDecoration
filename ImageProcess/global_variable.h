@@ -24,6 +24,5 @@ extern Mat hat;
 #define FANTASY 3
 #define FREEZE 4
 #define MINISCALE 5
-#define DARKTONE 6
 #define SKETCH 7
 #define WIND 8
