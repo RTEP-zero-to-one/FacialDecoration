@@ -62,8 +62,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->filter_WIND, SIGNAL(clicked()), this, SLOT(filterProcess()));
     connect(ui->filter_ORIGINAL, SIGNAL(clicked()), this, SLOT(filterProcess()));
 
-    MyThread detect;
-    detect.start();
+    MyThread cascade;
+    cascade.start();
+    cascade.join();
 }
 
 MainWindow::~MainWindow() {
