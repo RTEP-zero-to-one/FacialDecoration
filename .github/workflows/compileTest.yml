@@ -34,6 +34,9 @@ jobs:
       - name: Make
         run: cd ${{github.workspace}}/build && make
 
+      - name: List Dir
+        run: cd ${{github.workspace}} && ls
+
       - name: Stand-alone Application Compress
         run: cd ${{github.workspace}} && mkdir FacialDecoration-SA && cp build/FacialDecoration FacialDecoration-SA && cp -r assets/ FacialDecoration-SA
 
