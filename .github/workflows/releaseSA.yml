@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          token: 'secrets.ORG_TOKEN'
+          token: ${{ secrets.ORG_TOKEN }}
 
       - name: Make Dir
         run: mkdir build && mkdir FacialDecoration-SA && cp -r assets/ FacialDecoration-SA
