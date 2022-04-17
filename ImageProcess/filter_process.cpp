@@ -95,26 +95,21 @@ Mat filter(Mat &src, int style_num) {
             }
         }
             break;
-        case FREEZE: {
+        case EMBOSSING: {
             for (int y = 0; y < height; y++) {
                 auto *P0 = src.ptr<uchar>(y);
+                auto *P2 = src.ptr<uchar>(y+1);
                 auto *P1 = result.ptr<uchar>(y);
                 for (int x = 0; x < width; x++) {
-                    float b0 = P0[3 * x];
-                    float g0 = P0[3 * x + 1];
-                    float r0 = P0[3 * x + 2];
-
-                    float b = (b0 - g0 - r0) * 3 / 2;
-                    float g = (g0 - b0 - r0) * 3 / 2;
-                    float r = (r0 - g0 - b0) * 3 / 2;
-
-                    r = (r > 255 ? 255 : (r < 0 ? -r : r));
-                    g = (g > 255 ? 255 : (g < 0 ? -g : g));
-                    b = (b > 255 ? 255 : (b < 0 ? -b : b));
-
-                    P1[3 * x] = (uchar) b;
-                    P1[3 * x + 1] = (uchar) g;
-                    P1[3 * x + 2] = (uchar) r;
+                    for (int i=0; i<3; i++) {
+                        int tmp0 = p2[3*(x+1)+i]-p0[3*(x-1)+i]+128;
+                        if (tmp0<0)
+                            p1[3*x+i]=0;
+                        else if (temp0<255)
+                            p1[3*x+i]=255;
+                        else
+                            p1[3*x+i]=temp0;
+                    }
                 }
             }
         }
