@@ -2,9 +2,9 @@ name: CompileTest
 
 on:
   push:
-    branches: [ dev, gui ]
+    branches: [ dev, gui, ci_try ]
   pull_request:
-    branches: [ dev, gui ]
+    branches: [ dev, gui, ci_try ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -33,6 +33,12 @@ jobs:
 
       - name: Make
         run: cd ${{github.workspace}}/build && make
+
+      - name: Stand-alone Application Compress
+        run: cd ${{github.workspace}} && mkdir FacialDecoration-SA && cp build/FacialDecoration FacialDecoration-SA && cp -r assets/ FacialDecoration-SA
+
+      - name: List Dir
+        run: ls
 
 #      - name: Run Test
 #        run: cd ${{github.workspace}}/build && cp UnitTest .. && cd .. && ./UnitTest
