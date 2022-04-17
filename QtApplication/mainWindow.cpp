@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
     setWindowTitle("Facial Decoration");
+    setWindowIcon(QIcon("assets/icon.ico"));
 
     // set button invisible as initial
     ui->aizenDecoration->setVisible(false);
