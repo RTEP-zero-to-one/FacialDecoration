@@ -24,7 +24,8 @@ add_executable(FacialDecoration
         ImageProcess/cascade.cpp
         ImageProcess/cascade.h
         ImageProcess/filter_process.cpp
-        ImageProcess/filter_process.h)
+        ImageProcess/filter_process.h
+        ImageProcess/CppThread.h ImageProcess/MyThread.cpp ImageProcess/MyThread.h)
 
 # opencv configuration
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")

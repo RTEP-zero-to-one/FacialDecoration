@@ -12,6 +12,8 @@
 #include "opencv2/opencv.hpp"
 #include "../ImageProcess/cascade.h"
 #include "../ImageProcess/face_detect.h"
+#include "../ImageProcess/MyThread.h"
+
 
 
 using namespace cv;
@@ -25,7 +27,8 @@ class MainWindow : public QMainWindow {
 Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = nullptr);
-
+//    Detect detection;
+//    static Mat &decoratedItem;
     ~MainWindow() override;
 
 private slots:
@@ -44,7 +47,8 @@ private:
     Ui::MainWindow *ui;
     VideoCapture capture;
     QTimer *timer;
-    Mat frame, decoratedItem,afterProcess;
+    Mat frame;
+//    Mat decoratedItem;
     Detect detection;
     int filterStyleNum=0;
     int whitenDegree=0;
