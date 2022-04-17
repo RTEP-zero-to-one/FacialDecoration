@@ -10,6 +10,7 @@ extern CascadeClassifier cascade_nose;
 extern CascadeClassifier cascade_mouth;
 extern CascadeClassifier cascade_eye;
 extern Mat frame;
+extern Mat decoratedItem;
 extern Rect faceRect;
 extern Rect noseRect;
 extern Rect eyeRect;

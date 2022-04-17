@@ -24,7 +24,10 @@ add_executable(FacialDecoration
         ImageProcess/cascade.cpp
         ImageProcess/cascade.h
         ImageProcess/filter_process.cpp
-        ImageProcess/filter_process.h)
+        ImageProcess/filter_process.h
+        ImageProcess/CppThread.h
+        ImageProcess/MyThread.cpp
+        ImageProcess/MyThread.h)
 
 # opencv configuration
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
@@ -51,3 +54,4 @@ endif ()
 set(CMAKE_PREFIX_PATH C:/Qt/Qt5.12.12/5.12.12/mingw73_64/lib/cmake)
 target_link_libraries(FacialDecoration Qt5::Core Qt5::Gui Qt5::Widgets)
 target_link_libraries(FacialDecoration ${OpenCV_LIBS})
+target_link_libraries(FacialDecoration pthread)

@@ -1,0 +1,3 @@
+[submodule "cppThread"]
+	path = cppThread
+	url = https://github.com/berndporr/cppThread.git
