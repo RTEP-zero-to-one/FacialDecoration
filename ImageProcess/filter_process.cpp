@@ -95,26 +95,21 @@ Mat filter(Mat &src, int style_num) {
             }
         }
             break;
-        case FREEZE: {
-            for (int y = 0; y < height; y++) {
+        case EMBOSSING: {
+            for (int y = 1; y < height-1; y++) {
                 auto *P0 = src.ptr<uchar>(y);
+                auto *P2 = src.ptr<uchar>(y+1);
                 auto *P1 = result.ptr<uchar>(y);
-                for (int x = 0; x < width; x++) {
-                    float b0 = P0[3 * x];
-                    float g0 = P0[3 * x + 1];
-                    float r0 = P0[3 * x + 2];
-
-                    float b = (b0 - g0 - r0) * 3 / 2;
-                    float g = (g0 - b0 - r0) * 3 / 2;
-                    float r = (r0 - g0 - b0) * 3 / 2;
-
-                    r = (r > 255 ? 255 : (r < 0 ? -r : r));
-                    g = (g > 255 ? 255 : (g < 0 ? -g : g));
-                    b = (b > 255 ? 255 : (b < 0 ? -b : b));
-
-                    P1[3 * x] = (uchar) b;
-                    P1[3 * x + 1] = (uchar) g;
-                    P1[3 * x + 2] = (uchar) r;
+                for (int x = 1; x < width-1; x++) {
+                    for (int i=0; i<3; i++) {
+                        int tmp0 = P2[3*(x+1)+i]-P0[3*(x-1)+i]+128;
+                        if (tmp0<0)
+                            P1[3*x+i]=0;
+                        else if (tmp0>255)
+                            P1[3*x+i]=255;
+                        else
+                            P1[3*x+i]=tmp0;
+                    }
                 }
             }
         }
@@ -142,8 +137,8 @@ Mat filter(Mat &src, int style_num) {
         }
             break;
         case WIND: {
-            int num = 20;//	num：Wind line density
-            int num1 = 40;//num1：Wind line length
+            int num = 10;//	num：Wind line density
+            int num1 = 30;//num1：Wind line length
             Mat src1u[3];
             split(src, src1u);
 

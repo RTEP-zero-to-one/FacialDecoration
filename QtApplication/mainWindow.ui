@@ -246,7 +246,7 @@
      <string>FANTASY</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="filter_FREEZE">
+   <widget class="QPushButton" name="filter_EMBOSSING">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -259,7 +259,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>FREEZE</string>
+     <string>EMBOSSING</string>
     </property>
    </widget>
    <widget class="QPushButton" name="filter_SKETCH">
@@ -465,7 +465,7 @@
      <x>0</x>
      <y>0</y>
      <width>791</width>
-     <height>24</height>
+     <height>18</height>
     </rect>
    </property>
   </widget>
