@@ -41,7 +41,7 @@ jobs:
 #        run: cd ${{github.workspace}} && ls
 
       - name: Stand-alone Application Compress
-        run: cd FacialDecoration-SA && ls -a
+        run: tar -czvf FacialDecoration-SA.tar.gz FacialDecoration
 
       - name: List Dir
         run: ls
