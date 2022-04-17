@@ -25,7 +25,7 @@ add_executable(FacialDecoration
         ImageProcess/cascade.h
         ImageProcess/filter_process.cpp
         ImageProcess/filter_process.h
-        cppThread/CppThread.h
+        ImageProcess/CppThread.h
         ImageProcess/MyThread.cpp
         ImageProcess/MyThread.h)
 
