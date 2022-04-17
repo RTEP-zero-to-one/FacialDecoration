@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QWidget::setStyleSheet(setSheet);
 
     ui->setupUi(this);
-    setWindowTitle("Qt Application");
+    setWindowTitle("Facial Decoration");
 
     // set button invisible as initial
     ui->aizenDecoration->setVisible(false);
