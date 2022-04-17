@@ -137,8 +137,8 @@ Mat filter(Mat &src, int style_num) {
         }
             break;
         case WIND: {
-            int num = 20;//	num：Wind line density
-            int num1 = 40;//num1：Wind line length
+            int num = 10;//	num：Wind line density
+            int num1 = 30;//num1：Wind line length
             Mat src1u[3];
             split(src, src1u);
 
