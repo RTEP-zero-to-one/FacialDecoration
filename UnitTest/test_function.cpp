@@ -7,7 +7,7 @@
 
 TEST(FilterTest, OLDFASHION) {
     Mat src, result;
-    src = imread("assets/img.png", IMREAD_ANYCOLOR);
+    src = imread("assets/test.jpg", IMREAD_ANYCOLOR);
     if (!src.empty()) {
         result = filter(src, OLDFASHION);
     } else {
@@ -18,7 +18,7 @@ TEST(FilterTest, OLDFASHION) {
 
 TEST(FilterTest, COMICBOOK) {
     Mat src, result;
-    src = imread("assets/img.png", IMREAD_ANYCOLOR);
+    src = imread("assets/test.jpg", IMREAD_ANYCOLOR);
     if (!src.empty()) {
         result = filter(src, COMICBOOK);
     } else {
@@ -29,7 +29,7 @@ TEST(FilterTest, COMICBOOK) {
 
 TEST(FilterTest, FANTASY) {
     Mat src, result;
-    src = imread("assets/img.png", IMREAD_ANYCOLOR);
+    src = imread("assets/test.jpg", IMREAD_ANYCOLOR);
     if (!src.empty()) {
         result = filter(src, FANTASY);
     } else {
@@ -40,7 +40,7 @@ TEST(FilterTest, FANTASY) {
 
 TEST(FilterTest, EMBOSSING) {
     Mat src, result;
-    src = imread("assets/img.png", IMREAD_ANYCOLOR);
+    src = imread("assets/test.jpg", IMREAD_ANYCOLOR);
     if (!src.empty()) {
         result = filter(src, EMBOSSING);
     } else {
@@ -51,7 +51,7 @@ TEST(FilterTest, EMBOSSING) {
 
 TEST(FilterTest, SKETCH) {
     Mat src, result;
-    src = imread("assets/img.png", IMREAD_ANYCOLOR);
+    src = imread("assets/test.jpg", IMREAD_ANYCOLOR);
     if (!src.empty()) {
         result = filter(src, SKETCH);
     } else {
@@ -62,7 +62,7 @@ TEST(FilterTest, SKETCH) {
 
 TEST(FilterTest, WIND) {
     Mat src, result;
-    src = imread("assets/img.png", IMREAD_ANYCOLOR);
+    src = imread("assets/test.jpg", IMREAD_ANYCOLOR);
     if (!src.empty()) {
         result = filter(src, WIND);
     } else {
