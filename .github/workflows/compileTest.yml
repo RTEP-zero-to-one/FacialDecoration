@@ -35,7 +35,7 @@ jobs:
         run: cmake --build build --config ${{env.BUILD_TYPE}}
 
       - name: Make
-        run: cd build && make
+        run: cd build && make && ls
 
 #      - name: List Dir
 #        run: cd ${{github.workspace}} && ls
