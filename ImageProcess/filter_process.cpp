@@ -102,13 +102,13 @@ Mat filter(Mat &src, int style_num) {
                 auto *P1 = result.ptr<uchar>(y);
                 for (int x = 0; x < width; x++) {
                     for (int i=0; i<3; i++) {
-                        int tmp0 = p2[3*(x+1)+i]-p0[3*(x-1)+i]+128;
+                        int tmp0 = P2[3*(x+1)+i]-P0[3*(x-1)+i]+128;
                         if (tmp0<0)
-                            p1[3*x+i]=0;
-                        else if (temp0<255)
-                            p1[3*x+i]=255;
+                            P1[3*x+i]=0;
+                        else if (tmp0<255)
+                            P1[3*x+i]=255;
                         else
-                            p1[3*x+i]=temp0;
+                            P1[3*x+i]=tmp0;
                     }
                 }
             }

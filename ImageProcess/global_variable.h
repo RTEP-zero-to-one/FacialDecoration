@@ -23,7 +23,7 @@ extern Mat hat;
 #define OLDFASHION 1
 #define COMICBOOK 2
 #define FANTASY 3
-#define FREEZE 4
+#define EMBOSSING 4
 #define MINISCALE 5
 #define SKETCH 7
 #define WIND 8
