@@ -38,14 +38,14 @@ TEST(FilterTest, FANTASY) {
     }
 }
 
-TEST(FilterTest, FREEZE) {
+TEST(FilterTest, EMBOSSING) {
     Mat src, result;
     src = imread("assets/img.png", IMREAD_ANYCOLOR);
     if (!src.empty()) {
-        result = filter(src, FREEZE);
+        result = filter(src, EMBOSSING);
     } else {
         Mat img1(500, 500, CV_8UC3, Scalar(10, 100, 150));
-        result = filter(img1, FREEZE);
+        result = filter(img1, EMBOSSING);
     }
 }
 
