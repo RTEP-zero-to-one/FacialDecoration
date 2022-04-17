@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->filter_OLDFASHION->setVisible(false);
     ui->filter_COMICBOOK->setVisible(false);
     ui->filter_FANTASY->setVisible(false);
-    ui->filter_FREEZE->setVisible(false);
+    ui->filter_EMBOSSING->setVisible(false);
     ui->filter_SKETCH->setVisible(false);
     ui->filter_WIND->setVisible(false);
     ui->filter_ORIGINAL->setVisible(false);
@@ -58,7 +58,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->filter_OLDFASHION, SIGNAL(clicked()), this, SLOT(filterProcess()));
     connect(ui->filter_COMICBOOK, SIGNAL(clicked()), this, SLOT(filterProcess()));
     connect(ui->filter_FANTASY, SIGNAL(clicked()), this, SLOT(filterProcess()));
-    connect(ui->filter_FREEZE, SIGNAL(clicked()), this, SLOT(filterProcess()));
+    connect(ui->filter_EMBOSSING, SIGNAL(clicked()), this, SLOT(filterProcess()));
     connect(ui->filter_SKETCH, SIGNAL(clicked()), this, SLOT(filterProcess()));
     connect(ui->filter_WIND, SIGNAL(clicked()), this, SLOT(filterProcess()));
     connect(ui->filter_ORIGINAL, SIGNAL(clicked()), this, SLOT(filterProcess()));
@@ -110,7 +110,7 @@ void MainWindow::openCamera() {
     ui->filter_OLDFASHION->setVisible(true);
     ui->filter_COMICBOOK->setVisible(true);
     ui->filter_FANTASY->setVisible(true);
-    ui->filter_FREEZE->setVisible(true);
+    ui->filter_EMBOSSING->setVisible(true);
     ui->filter_SKETCH->setVisible(true);
     ui->filter_WIND->setVisible(true);
     ui->whitenLabel->setVisible(true);
@@ -165,7 +165,7 @@ void MainWindow::filterProcess() {
         filterStyleNum = 2;
     } else if (btnObj == "FANTASY") {
         filterStyleNum = 3;
-    } else if (btnObj == "FREEZE") {
+    } else if (btnObj == "EMBOSSING") {
         filterStyleNum = 4;
     } else if (btnObj == "SKETCH") {
         filterStyleNum = 7;
