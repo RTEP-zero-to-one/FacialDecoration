@@ -43,8 +43,9 @@ jobs:
 #      - name: List Dir
 #        run: ls
       - name: Commit & Push
-        run: git config user.name github-actions
-             git config user.email github-actions@github.com
-             git add FacialDecoration-SA.tar.gz
-             git commit -m "Stand-alone Application Update"
-             git push
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add FacialDecoration-SA.tar.gz
+          git commit -m "Stand-alone Application Update"
+          git push
