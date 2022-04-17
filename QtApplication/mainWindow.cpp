@@ -1,9 +1,7 @@
 #include "mainWindow.h"
 #include "ui_mainWindow.h"
 #include "../ImageProcess/filter_process.h"
-#include "thread"
-
-
+Mat decoratedItem;
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow) {
@@ -12,8 +10,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QString setSheet = QLatin1String(stylesheet.readAll());
     QWidget::setStyleSheet(setSheet);
 
-
-    loadCascade();
     ui->setupUi(this);
     setWindowTitle("Qt Application");
 
@@ -65,6 +61,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->filter_SKETCH, SIGNAL(clicked()), this, SLOT(filterProcess()));
     connect(ui->filter_WIND, SIGNAL(clicked()), this, SLOT(filterProcess()));
     connect(ui->filter_ORIGINAL, SIGNAL(clicked()), this, SLOT(filterProcess()));
+
+    MyThread detect;
+    detect.start();
 }
 
 MainWindow::~MainWindow() {
@@ -84,8 +83,9 @@ void MainWindow::readFrame() {
     MainWindow::frame = filter(MainWindow::frame, filterStyleNum);
 
     // show realtime frame in the label
+    cv::cvtColor(MainWindow::frame, MainWindow::frame, COLOR_BGR2RGB);
     QImage image = QImage((const uchar *) frame.data, frame.cols, frame.rows,
-                          QImage::Format_RGB888).rgbSwapped();
+                          QImage::Format_RGB888);
     ui->cameraShow->setPixmap(QPixmap::fromImage(image));
 }
 
