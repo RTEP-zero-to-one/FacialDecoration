@@ -20,7 +20,7 @@ jobs:
       image: xeonhis/rtep_dev:qt
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Make Dir
         run: mkdir build && mkdir FacialDecoration-SA && cp -r assets/ FacialDecoration-SA
