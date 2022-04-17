@@ -96,16 +96,16 @@ Mat filter(Mat &src, int style_num) {
         }
             break;
         case EMBOSSING: {
-            for (int y = 0; y < height; y++) {
+            for (int y = 1; y < height-1; y++) {
                 auto *P0 = src.ptr<uchar>(y);
                 auto *P2 = src.ptr<uchar>(y+1);
                 auto *P1 = result.ptr<uchar>(y);
-                for (int x = 0; x < width; x++) {
+                for (int x = 1; x < width-1; x++) {
                     for (int i=0; i<3; i++) {
                         int tmp0 = P2[3*(x+1)+i]-P0[3*(x-1)+i]+128;
                         if (tmp0<0)
                             P1[3*x+i]=0;
-                        else if (tmp0<255)
+                        else if (tmp0>255)
                             P1[3*x+i]=255;
                         else
                             P1[3*x+i]=tmp0;
