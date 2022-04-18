@@ -53,6 +53,7 @@ private:
     VideoCapture capture;
     QTimer *timer;
     Mat frame;
+    Mat warningImage;
 //    Mat decoratedItem;
     Detect detection;
     int filterStyleNum=0;

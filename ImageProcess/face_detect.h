@@ -22,9 +22,11 @@ public:
 	bool eyeDetect(const Mat& src, CascadeClassifier& cascade);
 	bool mouthDetect(const Mat& src, CascadeClassifier& cascade);
 	bool getAngle(const Mat& src);
-	Mat decorate(const Mat& src, const Mat& res);
+	Mat decorate(const Mat& src, const Mat& res,const Mat&warningRes);
 	Mat transform(const Mat& res);
 	
 };
 void displayDetection(const Mat&, const Detect& );
-	
+typedef Mat(*pf)(int, const Mat&, const Mat&);
+Mat callback(int error_id, const Mat& src, const Mat& res);
+Mat errWarning(pf p, int error_id, const Mat& src, const Mat& res);	
