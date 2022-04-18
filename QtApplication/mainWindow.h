@@ -10,6 +10,8 @@
 #include "QImage"
 #include "QFile"
 #include "QDebug"
+#include "iostream"
+#include "algorithm"
 #include <QFileDialog>
 #include "opencv2/opencv.hpp"
 #include "../ImageProcess/cascade.h"

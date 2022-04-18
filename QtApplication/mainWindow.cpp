@@ -143,7 +143,8 @@ void MainWindow::quit() {
 
 void MainWindow::getDecorationImage() {
     // get text of current button
-    string btnString = toLowerCase(((QPushButton *) sender())->text().toStdString());
+    string btnString = ((QPushButton *) sender())->text().toStdString();
+    transform(btnString.begin(),btnString.end(),btnString.begin(),::tolower);
     // get object of current button
     auto btn = qobject_cast<QPushButton *>(sender());
     auto btnName = btn->objectName();
