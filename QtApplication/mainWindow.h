@@ -9,6 +9,8 @@
 #include "QTimer"
 #include "QImage"
 #include "QFile"
+#include "QDebug"
+#include <QFileDialog>
 #include "opencv2/opencv.hpp"
 #include "../ImageProcess/cascade.h"
 #include "../ImageProcess/face_detect.h"
