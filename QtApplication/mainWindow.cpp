@@ -75,6 +75,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->filter_WIND, SIGNAL(clicked()), this, SLOT(filterProcess()));
     connect(ui->filter_ORIGINAL, SIGNAL(clicked()), this, SLOT(filterProcess()));
 
+    warningImage = imread("assets/warning.jpeg");
     MyThread cascade;
     cascade.start();
     cascade.join();
@@ -91,7 +92,7 @@ void MainWindow::readFrame() {
     detection.faceDetect(frame, cascade_face);
     detection.eyeDetect(frame, cascade_eye);
     detection.getAngle(frame);
-    frame = detection.decorate(frame, decoratedItem);
+    frame = detection.decorate(frame, decoratedItem,warningImage);
     MainWindow::frame = faceBlur(MainWindow::frame, filterVal);
     MainWindow::frame = whiteFace(MainWindow::frame, whitenDegree);
     MainWindow::frame = filter(MainWindow::frame, filterStyleNum);
