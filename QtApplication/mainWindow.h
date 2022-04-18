@@ -43,6 +43,7 @@ private slots:
     void whitenPositionChanged(int position);
     void blurPositionChanged(int position);
     void filterProcess();
+    void decorateCustomImage(QString filePath);
 
 
 private:

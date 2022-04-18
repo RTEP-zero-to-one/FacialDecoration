@@ -51,18 +51,16 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->narutoDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->rengokuDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->ramDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
-//    connect(ui->customDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->releaseDecoration, SIGNAL(clicked()), this, SLOT(releaseDecoration()));
-
-    // 选择文件按钮事件
     connect(ui->customDecoration,&QPushButton::clicked,this,[this]{
         QString fileName = QFileDialog::getOpenFileName(
                 this,
-                "选择文件",
-                "D:/",
-                "文档(*.xls *xlsx);;All files(*.*)");
+                "Select Your Sticker",
+                "",
+                "Images(*.jpeg *.jpg *.png);;All files(*.*)");
         if (!fileName.isEmpty()) {
-            qDebug() << "this is the file name " << fileName;
+            decorateCustomImage(fileName);
+//            qDebug() << "this is the file name " << fileName;
         }
     });
 
@@ -161,7 +159,6 @@ void MainWindow::getDecorationImage() {
     if (!decoratedItem.empty()) {
         ui->releaseDecoration->setVisible(true);
     }
-
 }
 
 void MainWindow::releaseDecoration() {
@@ -198,5 +195,14 @@ void MainWindow::filterProcess() {
         ui->filter_ORIGINAL->setVisible(false);
     } else {
         ui->filter_ORIGINAL->setVisible(true);
+    }
+}
+
+void MainWindow::decorateCustomImage(QString filePath) {
+    string _filePath = filePath.toStdString();
+
+    decoratedItem = imread(_filePath);
+    if (!decoratedItem.empty()) {
+        ui->releaseDecoration->setVisible(true);
     }
 }
