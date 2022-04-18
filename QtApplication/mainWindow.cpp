@@ -1,7 +1,9 @@
 #include "mainWindow.h"
 #include "ui_mainWindow.h"
 #include "../ImageProcess/filter_process.h"
+
 Mat decoratedItem;
+
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow) {
@@ -33,7 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->whitenLabel->setVisible(false);
     ui->whitenSlider->setVisible(false);
     ui->blurLabel->setVisible(false);
-    ui->blurSlider-> setVisible(false);
+    ui->blurSlider->setVisible(false);
 
     ui->imageLabel->setStyleSheet("background-image: url(assets/logo2.png);");
 
@@ -49,8 +51,18 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->narutoDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->rengokuDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->ramDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
-    connect(ui->customDecoration, SIGNAL(clicked()), this, SLOT(getDecorationImage()));
     connect(ui->releaseDecoration, SIGNAL(clicked()), this, SLOT(releaseDecoration()));
+    connect(ui->customDecoration,&QPushButton::clicked,this,[this]{
+        QString fileName = QFileDialog::getOpenFileName(
+                this,
+                "Select Your Sticker",
+                "",
+                "Images(*.jpeg *.jpg *.png);;All files(*.*)");
+        if (!fileName.isEmpty()) {
+            decorateCustomImage(fileName);
+//            qDebug() << "this is the file name " << fileName;
+        }
+    });
 
     connect(ui->whitenSlider, SIGNAL(valueChanged(int)), this, SLOT(whitenPositionChanged(int)));
     connect(ui->blurSlider, SIGNAL(valueChanged(int)), this, SLOT(blurPositionChanged(int)));
@@ -80,7 +92,7 @@ void MainWindow::readFrame() {
     detection.eyeDetect(frame, cascade_eye);
     detection.getAngle(frame);
     frame = detection.decorate(frame, decoratedItem);
-    MainWindow::frame = faceBlur(MainWindow::frame,filterVal);
+    MainWindow::frame = faceBlur(MainWindow::frame, filterVal);
     MainWindow::frame = whiteFace(MainWindow::frame, whitenDegree);
     MainWindow::frame = filter(MainWindow::frame, filterStyleNum);
 
@@ -116,7 +128,7 @@ void MainWindow::openCamera() {
     ui->whitenLabel->setVisible(true);
     ui->whitenSlider->setVisible(true);
     ui->blurLabel->setVisible(true);
-    ui->blurSlider-> setVisible(true);
+    ui->blurSlider->setVisible(true);
 }
 
 void MainWindow::closeCamera() {
@@ -132,16 +144,22 @@ void MainWindow::quit() {
 void MainWindow::getDecorationImage() {
     // get text of current button
     string btnString = ((QPushButton *) sender())->text().toStdString();
+    transform(btnString.begin(),btnString.end(),btnString.begin(),::tolower);
     // get object of current button
     auto btn = qobject_cast<QPushButton *>(sender());
     auto btnName = btn->objectName();
     auto currentButton = this->findChild<QPushButton *>(btnName);
 
     decoratedItem = imread("assets/" + btnString + ".jpeg");
+    if (decoratedItem.empty()) {
+        decoratedItem = imread("assets/" + btnString + ".jpg");
+    }
+    if (decoratedItem.empty()) {
+        decoratedItem = imread("assets/" + btnString + ".png");
+    }
     if (!decoratedItem.empty()) {
         ui->releaseDecoration->setVisible(true);
     }
-
 }
 
 void MainWindow::releaseDecoration() {
@@ -174,9 +192,18 @@ void MainWindow::filterProcess() {
     } else if (btnObj == "ORIGINAL") {
         filterStyleNum = 0;
     }
-    if(filterStyleNum ==0){
+    if (filterStyleNum == 0) {
         ui->filter_ORIGINAL->setVisible(false);
-    }else{
+    } else {
         ui->filter_ORIGINAL->setVisible(true);
+    }
+}
+
+void MainWindow::decorateCustomImage(QString filePath) {
+    string _filePath = filePath.toStdString();
+
+    decoratedItem = imread(_filePath);
+    if (!decoratedItem.empty()) {
+        ui->releaseDecoration->setVisible(true);
     }
 }

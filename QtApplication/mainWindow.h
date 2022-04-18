@@ -9,6 +9,10 @@
 #include "QTimer"
 #include "QImage"
 #include "QFile"
+#include "QDebug"
+#include "iostream"
+#include "algorithm"
+#include <QFileDialog>
 #include "opencv2/opencv.hpp"
 #include "../ImageProcess/cascade.h"
 #include "../ImageProcess/face_detect.h"
@@ -41,6 +45,7 @@ private slots:
     void whitenPositionChanged(int position);
     void blurPositionChanged(int position);
     void filterProcess();
+    void decorateCustomImage(QString filePath);
 
 
 private:
