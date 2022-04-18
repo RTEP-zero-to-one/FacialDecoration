@@ -1,4 +1,17 @@
 # include "face_detect.h"
+Mat callback(int error_id, const Mat& src, const Mat& res) {
+	Mat dst = src.clone();
+	if (error_id == 0) {
+		Rect warningROI = Rect(0, 60, res.cols, res.rows);
+		Mat imageROI = dst(warningROI);
+		res.copyTo(imageROI, res);
+	}
+	return dst;
+}
+Mat errWarning(pf p, int error_id, const Mat& src, const Mat& res) {
+	Mat result = (*p)(error_id, src, res);
+	return result;
+}
 bool Detect::faceDetect(const Mat& src, CascadeClassifier& cascade)
 {
 	Mat imgGray;
@@ -165,7 +178,8 @@ bool Detect::getAngle(const Mat& src) {
 }
 Mat Detect::decorate(const Mat& src, const Mat& res) {
 	if (faceRect.area() == 0||res.empty()) {
-		return src;
+		Mat test = errWarning(callback, 0, src, warningRes);
+		return test;
 	}
 	Mat img = src.clone();
 	int length = res.cols;
