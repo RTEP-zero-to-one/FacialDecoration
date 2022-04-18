@@ -153,7 +153,7 @@ Distributed under the Apache License 2.0. See [`LICENSE`](https://github.com/RTE
 
 
 
-## Contacts
+## Contact
 
 This project is being completed by a team of Msc Computer System Engineering students at the University of Glasgow:
 
