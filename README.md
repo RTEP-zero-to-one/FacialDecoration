@@ -50,16 +50,18 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#stand-alone-application">Stand-alone Application</a></li>
+        <li><a href="#build-application-manually">Build Application Manually</a></li>
+        <li><a href="#run-test">Run Test</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
+
 
 
 
@@ -161,11 +163,3 @@ This project is being completed by a team of Msc Computer System Engineering stu
 * [Xunan Wang](https://github.com/SheenaWang11)
 * [Luoxuan Peng](https://github.com/Xxxuan11)
 * [Heting Ying](https://github.com/XeonHis)
-
-
-
-
-## Acknowledgements
-* 
-* 
-* 
