@@ -1,4 +1,3 @@
-<!-- PROJECT LOGO -->
 <br />
 
 <div align="center">
@@ -35,7 +34,7 @@
 ![Issues](https://img.shields.io/github/issues-raw/RTEP-zero-to-one/FacialDecorationTracing?style=for-the-badge)
 ![Apache-2.0 License](https://img.shields.io/badge/LICENSE-Apache--2.0-yellowgreen?style=for-the-badge)
 
-<!-- TABLE OF CONTENTS -->
+
 
 <details open="open">
   <summary>Catalogue</summary>
@@ -65,8 +64,6 @@
 
 
 
-
-<!-- ABOUT THE PROJECT -->
 ## About The Project
 
 The facial decoration is a real-time face detection and instant beautification application based on Raspberry Pi.
@@ -79,45 +76,84 @@ In order to perform simple beauty functions, it can automatically and accurately
 * C++ Timer
 ### Built With
 
-* GitHub Pages
-* Jekyll with "just-the-docs" (to build documentation)
+* GitHub Wiki
 * Typora
 
 
-<!-- GETTING STARTED -->
+
 ## Getting Started
 
-To-do: set up steps
 
 ### Prerequisites
 
-Specify which software dependencies and knowledgement are used and how to install them:
+OpenCV and Qt5 are required. Users can use following script to install:
 
   ```sh
-  to-do
+  sh install_dependency.sh
   ```
 
-<!-- USAGE EXAMPLES -->
+### Stand-alone Application
+
+If you want to quickly download and run our project, simply use the script we provide:.
+```
+bash <(curl -s -S -L https://raw.githubusercontent.com/RTEP-zero-to-one/FacialDecoration/main/run_application.sh)
+```
+
+This installation is currently only available for **Linux** machines. We have tested our software on
+
+- Ubuntu 20.04 LTS with x86_64
+- Raspberry Pi 4B with Raspberry Pi OS
+
+### Build Application Manually
+1. Clone this repository
+```
+git clone https://github.com/RTEP-zero-to-one/FacialDecoration.git
+```
+2. Install Dependency with Script (Installation of Qt and OpenCV may consume a lot of time)
+```
+cd FacialDecoration && sh install_dependency.sh
+```
+3. Build the Application
+```
+sh build.sh
+```
+4. Run the Application
+```
+./FacialDecoration
+```
+
+### Run Test
+1. Finish step 1~3 in Build Application
+2. Change **UnitTest** file path to $ProjectRootDir, because the resource files are not compiled with CMake and they are not in build directory.
+```
+cp build/UnitTest .
+```
+3. Run UnitTest
+```
+./UnitTest
+```
+
+
 
 ## Usage
 
 * Include screenshots, video demos and code examples to demonstrate the project
 
 
-<!-- ROADMAP -->
+
 ## Roadmap
 
 See the [open issues](https://github.com/RTEP-zero-to-one/FacialDecorationTracing/issues) for a list of proposed features (and known issues).
 
-<!-- LICENSE -->
+
 
 ## License
 
 Distributed under the Apache License 2.0. See [`LICENSE`](https://github.com/RTEP-zero-to-one/FacialDecorationTracing/blob/dev/LICENSE) for more information.
 
-<!-- CONTACT -->
 
-## Contact
+
+## Contacts
 
 This project is being completed by a team of Msc Computer System Engineering students at the University of Glasgow:
 
@@ -128,7 +164,7 @@ This project is being completed by a team of Msc Computer System Engineering stu
 
 
 
-<!-- ACKNOWLEDGEMENTS -->
+
 ## Acknowledgements
 * 
 * 
