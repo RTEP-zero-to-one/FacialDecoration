@@ -3,7 +3,7 @@
 Mat callback(int error_id, const Mat &src, const Mat &res) {
     Mat dst = src.clone();
     if (error_id == 0) {
-        Rect warningROI = Rect(0, 60, res.cols, res.rows);
+        Rect warningROI = Rect(res.cols, 60, res.cols, res.rows);
         Mat imageROI = dst(warningROI);
         res.copyTo(imageROI, res);
     }
@@ -174,7 +174,10 @@ bool Detect::getAngle(const Mat &src) {
 }
 
 Mat Detect::decorate(const Mat &src, const Mat &res, const Mat &warningRes) {
-    if (faceRect.area() == 0 || res.empty()) {
+    if (res.empty()){
+        return src;
+    }
+    if (faceRect.area() == 0) {
         Mat test = errWarning(callback, 0, src, warningRes);
         return test;
     }
@@ -220,7 +223,8 @@ Mat Detect::decorate(const Mat &src, const Mat &res, const Mat &warningRes) {
     }
     Mat imageROI = img(resROI);
     resNew.copyTo(imageROI, resNew);
-
+    // reset Rect
+    Detect::faceRect=Rect (0,0,0,0);
     return img;
 }
 
