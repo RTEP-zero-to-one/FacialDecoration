@@ -13,15 +13,16 @@
   <p align="center">
     Help you to discover a brand new self!
     <br />
-      <a href="https://rtep-zero-to-one.github.io/rtep/"><strong>Full the docs »</strong></a>
+      <a href="https://github.com/RTEP-zero-to-one/FacialDecoration/wiki"><strong>Full the docs »</strong></a>
     <br />
     <br />
-    <a href="#">View Demo</a> 
+    <a href="https://twitter.com/FacialDecorati1/status/1515783128769519630">View Demo</a> 
     ·
     <a href="#">Report Bug</a>
     ·
     <a href="#">Request Feature</a>
   </p>
+
 
 
 
@@ -96,8 +97,8 @@ Specify which software dependencies and knowledgement are used and how to instal
   to-do
   ```
 
-
 <!-- USAGE EXAMPLES -->
+
 ## Usage
 
 * Include screenshots, video demos and code examples to demonstrate the project
@@ -108,8 +109,8 @@ Specify which software dependencies and knowledgement are used and how to instal
 
 See the [open issues](https://github.com/RTEP-zero-to-one/FacialDecorationTracing/issues) for a list of proposed features (and known issues).
 
-
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the Apache License 2.0. See [`LICENSE`](https://github.com/RTEP-zero-to-one/FacialDecorationTracing/blob/dev/LICENSE) for more information.
