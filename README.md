@@ -16,11 +16,11 @@
       <a href="https://github.com/RTEP-zero-to-one/FacialDecoration/wiki"><strong>Full the docs »</strong></a>
     <br />
     <br />
-    <a href="https://twitter.com/FacialDecorati1/status/1515783128769519630">View Demo</a> 
+    <a href="https://twitter.com/FacialDecorati1">Twitter</a> 
     ·
-    <a href="#">Report Bug</a>
+    <a href="https://www.facebook.com/profile.php?id=100075055657851">Facebook</a>
     ·
-    <a href="#">Request Feature</a>
+    <a href="#">YouTube</a>
   </p>
 
 
@@ -117,7 +117,7 @@ Distributed under the Apache License 2.0. See [`LICENSE`](https://github.com/RTE
 
 <!-- CONTACT -->
 
-## Contacts
+## Contact
 
 This project is being completed by a team of Msc Computer System Engineering students at the University of Glasgow:
 
